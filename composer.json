@@ -1,0 +1,14 @@
+{
+    "name": "douggonsouza/permission",
+    "description": "Módulo de permissionamento do usuário",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Douglas Gonçalves de Souza",
+            "email": "douggonsouza@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
