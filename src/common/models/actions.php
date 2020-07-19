@@ -1,35 +1,64 @@
 <?php
 
-namespace root\home\models;
+namespace permission\common\models;
 
-use Nuclear\system\model\models;
-use Nuclear\system\model\modelsInterface;
-use Nuclear\alerts\alerts;
-use root\home\models\licensePermissions;
+use data\model\model;
 
-class licenseActions extends models implements modelsInterface
+class actions extends model
 {
-    const PERMISSIONS_TYPE_VIEW = 'view';
-    const PERMISSIONS_TYPE_LIST = 'list';
+    const PERMISSIONS_TYPE_VIEW     = 'view';
+    const PERMISSIONS_TYPE_LIST     = 'list';
     const PERMISSIONS_TYPE_INSERT   = 'insert';
     const PERMISSIONS_TYPE_UPDATE   = 'update';
     const PERMISSIONS_TYPE_DELETE   = 'delete';
     const PERMISSIONS_TYPE_UPLOAD   = 'upload';
     const PERMISSIONS_TYPE_DOWNLOAD = 'download';
 
-    public $table = 'license_actions';
+    public $table = 'actions';
     public $key   = 'action_id';
+    public $dicionary = "SELECT action_id as value, name as label FROM actions;";
 
-    protected $dicionarySQL = "SELECT
-            MAX(action_id) as value,
-            action as label
-        FROM license_actions
-        GROUP BY
-            action;";
-
-    public function dicionary()
+    /**
+     * Evento construtor da classe
+     */
+    public function __construct()
     {
-        return parent::dicionary($this->dicionarySQL);
+        parent::__construct($this->getTable(), $this->getKey());
+    }
+
+    /**
+     * Informações das colunas visíveis
+     *
+     * @return void
+     */
+    public function visibleColumns()
+    {
+        return array(
+            'table'   => 'actons',
+            'key'     => 'action_id',
+            'columns' => array(
+                'action_id' => array(
+                    'label' => 'Id',
+                    'pk'    => true,
+                    'type'  => 'integer',
+                ),
+                'profile_id' => array(
+                    'label' => 'Perfil',
+                    'pk'    => false,
+                    'type'  => 'integer',
+                ),
+                'action' => array(
+                    'label' => 'Ação',
+                    'pk'    => false,
+                    'type'  => 'integer',
+                ),
+                'permission_id' => array(
+                    'label' => 'Permissão',
+                    'pk'    => false,
+                    'type'  => 'integer',
+                ),
+            ),
+        );
     }
 
     public function licenses(int $profileId)
@@ -38,19 +67,19 @@ class licenseActions extends models implements modelsInterface
             return false;
 
         $sql = "SELECT
-                lac.action,
-                GROUP_CONCAT(DISTINCT lac.permission_id) as slugs
-            FROM license_actions as lac
-            JOIN license_profiles AS lpr ON lpr.profile_id = lac.profile_id AND lpr.active = 1
-            JOIN license_permissions AS lpe ON lpe.permission_id = lac.permission_id AND lpe.active = 1
+                ac.action,
+                GROUP_CONCAT(DISTINCT ac.permission_id) as slugs
+            FROM actions as ac
+            JOIN profiles AS lpr ON lpr.profile_id = ac.profile_id AND lpr.active = 1
+            JOIN permissions AS lpe ON lpe.permission_id = ac.permission_id AND lpe.active = 1
             WHERE
                 lpr.profile_id = $profileId
             GROUP BY
-                lac.profile_id,
-                lac.action;";
+                ac.profile_id,
+                ac.action;";
 
         $data = [];
-        $resource = $this->select($sql);
+        $resource = (new resource())::query($sql);
         foreach($this->fetchAll($resource) as $item){
             $data[$item['action']] = $item['slugs'];
         }
@@ -63,12 +92,9 @@ class licenseActions extends models implements modelsInterface
         if(!isset($permission) || !isset($action)){
             return false;
         }
-        
-        if(!isset($_SESSION['user']['licenses'][$action]))
-            return false;
 
         $permissionId = null;
-        $permissions = (new licensePermissions())->slugs();
+        $permissions = (new permissions())->slugs();
         foreach($permissions as $index => $value){
             if( (string) $value == (string) $permission){
                 $permissionId = $index;
@@ -79,7 +105,6 @@ class licenseActions extends models implements modelsInterface
         if(!isset($permissionId))
             return false;
 
-        $action = explode(',',$_SESSION['user']['licenses'][$action]);
         if(!in_array($permissionId, $action)){
             return false;
         }
@@ -90,7 +115,7 @@ class licenseActions extends models implements modelsInterface
     public function deleteActions(int $profileId, int $permissionId)
     {
         $sql = sprintf(
-            'DELETE FROM license_actions WHERE profile_id=%d AND permission_id=%d;',
+            'DELETE FROM actions WHERE profile_id=%d AND permission_id=%d;',
             $profileId,
             $permissionId
         );
