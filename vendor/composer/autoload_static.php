@@ -7,17 +7,27 @@ namespace Composer\Autoload;
 class ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0
 {
     public static $prefixLengthsPsr4 = array (
-        's' => 
+        'p' => 
         array (
-            'src\\' => 4,
+            'permission\\' => 11,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'src\\' => 
+        'permission\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/permission',
+            0 => __DIR__ . '/../..' . '/src',
         ),
+    );
+
+    public static $classMap = array (
+        'permission\\admin\\controllers\\action' => __DIR__ . '/../..' . '/src/admin/controllers/action.php',
+        'permission\\admin\\controllers\\baseControl' => __DIR__ . '/../..' . '/src/admin/controllers/baseControl.php',
+        'permission\\admin\\controllers\\permission' => __DIR__ . '/../..' . '/src/admin/controllers/permission.php',
+        'permission\\admin\\controllers\\profile' => __DIR__ . '/../..' . '/src/admin/controllers/profile.php',
+        'permission\\common\\models\\actions' => __DIR__ . '/../..' . '/src/common/models/actions.php',
+        'permission\\common\\models\\permissions' => __DIR__ . '/../..' . '/src/common/models/permissions.php',
+        'permission\\common\\models\\profiles' => __DIR__ . '/../..' . '/src/common/models/profiles.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +35,7 @@ class ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0::$classMap;
 
         }, null, ClassLoader::class);
     }

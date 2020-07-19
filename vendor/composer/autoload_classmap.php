@@ -6,4 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'permission\\admin\\controllers\\action' => $baseDir . '/src/admin/controllers/action.php',
+    'permission\\admin\\controllers\\baseControl' => $baseDir . '/src/admin/controllers/baseControl.php',
+    'permission\\admin\\controllers\\permission' => $baseDir . '/src/admin/controllers/permission.php',
+    'permission\\admin\\controllers\\profile' => $baseDir . '/src/admin/controllers/profile.php',
+    'permission\\common\\models\\actions' => $baseDir . '/src/common/models/actions.php',
+    'permission\\common\\models\\permissions' => $baseDir . '/src/common/models/permissions.php',
+    'permission\\common\\models\\profiles' => $baseDir . '/src/common/models/profiles.php',
 );
