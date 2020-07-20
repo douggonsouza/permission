@@ -5,11 +5,11 @@ namespace permission\common\models;
 use data\model\model;
 use data\resource\resource;
 
-class actions extends model
+class areas extends model
 {
-    public $table = 'actions';
-    public $key   = 'action_id';
-    public $dicionary = "SELECT action_id as value, slug as label FROM actions;";
+    public $table = 'areas';
+    public $key   = 'area_id';
+    public $dicionary = "SELECT area_id as value, slug as label FROM areas;";
 
     /**
      * Evento construtor da classe
@@ -27,10 +27,10 @@ class actions extends model
     public function visibleColumns()
     {
         return array(
-            'table'   => 'actions',
-            'key'     => 'action_id',
+            'table'   => 'areas',
+            'key'     => 'area_id',
             'columns' => array(
-                'action_id' => array(
+                'area_id' => array(
                     'label' => 'Id',
                     'pk'    => true,
                     'type'  => 'integer',
@@ -38,12 +38,12 @@ class actions extends model
                 'slug' => array(
                     'label' => 'Identificador',
                     'pk'    => false,
-                    'type'  => 'varchar',
+                    'type'  => 'integer',
                 ),
                 'label' => array(
                     'label' => 'Etiqueta',
                     'pk'    => false,
-                    'type'  => 'integer',
+                    'type'  => 'varchar',
                 ),
                 'description' => array(
                     'label' => 'Descrição',
@@ -52,44 +52,6 @@ class actions extends model
                 ),
             ),
         );
-    }
-
-    public function slugs()
-    {
-        $slugs = [];
-        $sql = "SELECT action_id as value, slug as label FROM actions;";
-
-        $slugsResouce = new resource();
-        if(!$slugsResouce::query($sql)){
-            return false;
-        }
-
-        foreach($slugsResouce::asAllArray() as $item){
-            $slugs[$item['value']] = $item['label'];
-        }
-
-        return $slugs;
-    }
-
-    /**
-     * Valida a permissÃ£o para itens do Menu
-     *
-     * @param string $slug
-     * @param array $slugs
-     * @param array $views
-     * @return void
-     */
-    public function menuPermission(string $slug, array $slugs, array $views)
-    {
-        if(empty($slug) || empty($slugs) || empty($views)){
-            return false;
-        }
-            
-        $idSlug = array_search($slug, $slugs);
-        if(!isset($idSlug) || empty($idSlug))
-            return false;
-
-        return in_array($idSlug, $views);
     }
 
     /**

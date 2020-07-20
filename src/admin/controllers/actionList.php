@@ -4,7 +4,7 @@ namespace permission\admin\controllers;
 
 use permission\admin\controllers\baseControl;
 
-class action extends baseControl
+class actionList extends baseControl
 {
     const _LOCAL = __DIR__;
 

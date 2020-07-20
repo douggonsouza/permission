@@ -3,20 +3,19 @@
 namespace permission\common\models;
 
 use data\model\model;
-use data\resource\resource;
 
 class permissions extends model
 {
-    public $table = 'permissions';
-    public $key   = 'permission_id';
-    public $dicionary = "SELECT permission_id as value, slug as label FROM permissions;";
+    public $table = 'actions';
+    public $key   = 'action_id';
+    public $dicionary = "SELECT permission_id as value, action_slug as label FROM permissions;";
 
     /**
      * Evento construtor da classe
      */
     public function __construct()
     {
-        parent::__construct($this->getTable(), $this->getTable());
+        parent::__construct($this->getTable(), $this->getKey());
     }
 
     /**
@@ -35,13 +34,18 @@ class permissions extends model
                     'pk'    => true,
                     'type'  => 'integer',
                 ),
-                'slug' => array(
-                    'label' => 'Identificador',
+                'profile_id' => array(
+                    'label' => 'Perfil',
                     'pk'    => false,
                     'type'  => 'integer',
                 ),
-                'description' => array(
-                    'label' => 'Primeiro nome',
+                'area_id' => array(
+                    'label' => 'Area',
+                    'pk'    => false,
+                    'type'  => 'integer',
+                ),
+                'action_slug' => array(
+                    'label' => 'Ação',
                     'pk'    => false,
                     'type'  => 'varchar',
                 ),
@@ -49,43 +53,66 @@ class permissions extends model
         );
     }
 
-    public function slugs()
+    public function licenses(int $profileId)
     {
-        $slugs = [];
-        $sql = "SELECT permission_id as value, slug as label FROM permissions;";
-
-        $slugsResouce = new resource();
-        if(!$slugsResouce::query($sql)){
+        if(!isset($profileId) || empty($profileId))
             return false;
+
+        $sql = "SELECT
+                ac.action,
+                GROUP_CONCAT(DISTINCT ac.permission_id) as slugs
+            FROM actions as ac
+            JOIN profiles AS lpr ON lpr.profile_id = ac.profile_id AND lpr.active = 1
+            JOIN permissions AS lpe ON lpe.permission_id = ac.permission_id AND lpe.active = 1
+            WHERE
+                lpr.profile_id = $profileId
+            GROUP BY
+                ac.profile_id,
+                ac.action;";
+
+        $data = [];
+        $resource = (new resource())::query($sql);
+        foreach($this->fetchAll($resource) as $item){
+            $data[$item['action']] = $item['slugs'];
         }
 
-        foreach($slugsResouce::asAllArray() as $item){
-            $slugs[$item['value']] = $item['label'];
-        }
-
-        return $slugs;
+        return $data;
     }
 
-    /**
-     * Valida a permissÃ£o para itens do Menu
-     *
-     * @param string $slug
-     * @param array $slugs
-     * @param array $views
-     * @return void
-     */
-    public function menuPermission(string $slug, array $slugs, array $views)
+    public function isLicensed(string $permission, string $action)
     {
-        if(empty($slug) || empty($slugs) || empty($views)){
+        if(!isset($permission) || !isset($action)){
             return false;
         }
-            
-        $idSlug = array_search($slug, $slugs);
-        if(!isset($idSlug) || empty($idSlug))
+
+        $permissionId = null;
+        $permissions = (new permissions())->slugs();
+        foreach($permissions as $index => $value){
+            if( (string) $value == (string) $permission){
+                $permissionId = $index;
+                break;
+            }
+                
+        }
+        if(!isset($permissionId))
             return false;
 
-        return in_array($idSlug, $views);
+        if(!in_array($permissionId, $action)){
+            return false;
+        }
+
+        return true;
     }
+
+    public function deleteActions(int $profileId, int $permissionId)
+    {
+        $sql = sprintf(
+            'DELETE FROM actions WHERE profile_id=%d AND permission_id=%d;',
+            $profileId,
+            $permissionId
+        );
+        return $this->query($sql);
+    } 
 
     /**
      * Colhe o valor para table

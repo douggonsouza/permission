@@ -4,7 +4,7 @@ namespace permission\admin\controllers;
 
 use permission\admin\controllers\baseControl;
 
-class profile extends baseControl
+class profileUpdate extends baseControl
 {
     const _LOCAL = __DIR__;
 

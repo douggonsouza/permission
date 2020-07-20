@@ -9,7 +9,7 @@ class baseControl extends action
     const _LOCAL = __DIR__;
 
     /**
-     * Função a ser executada no contexto da action
+     * Funï¿½ï¿½o a ser executada no contexto da action
      *
      * @param array $info
      * @return void

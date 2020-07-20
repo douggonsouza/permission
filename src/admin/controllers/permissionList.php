@@ -4,7 +4,7 @@ namespace permission\admin\controllers;
 
 use permission\admin\controllers\baseControl;
 
-class profile extends baseControl
+class permissionList extends baseControl
 {
     const _LOCAL = __DIR__;
 
@@ -19,22 +19,22 @@ class profile extends baseControl
         // license
         // $this->isLicensed('permission-page-teachers', licenseActions::PERMISSIONS_TYPE_LIST);
         
-        // if(array_key_exists('Y3JpYcOnw6NvIGRlIG5vdm8gcGVyZmls',$_POST)){
-        //     $licenseProfiles = new licenseProfiles();
-        //     $licenseProfiles->setValue('name', $_POST['name']);
-        //     $licenseProfiles->setValue('description', $_POST['description']);
-        //     if(!$licenseProfiles->save()){
-        //         alerts::set("Erro no salvamento do perfil.",'error');
+        // if(array_key_exists('Y3JpYcOnw6NvIGRlIG5vdmEgcGVybWlzc8Ojbw==',$_POST)){
+        //     $licensePermission = new licensePermissions();
+        //     $licensePermission->setValue('slug', $_POST['slug']);
+        //     $licensePermission->setValue('description', $_POST['description']);
+        //     if(!$licensePermission->save()){
+        //         alerts::set("Erro no salvamento da permissão.",'error');
         //         parent::view(null, [
-        //             'title'      => 'Perfil',
-        //             'subtitle'   => 'Insere um novo perfil.',
+        //             'title'      => 'Permissão',
+        //             'subtitle'   => 'Insere um nova permissão.',
         //             'breadcump'  => [
         //                 'Admin'  => BASE_URL.'/admin/index',
-        //                 'Perfil' => false
+        //                 'Permissão' => false
         //             ]
         //         ]);
         //     }
-        //     alerts::set("Perfil salvo.",'success');
+        //     alerts::set("Permissão salva.",'success');
         // }
 
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
