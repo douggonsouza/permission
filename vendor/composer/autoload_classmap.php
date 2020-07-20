@@ -7,10 +7,20 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'permission\\admin\\controllers\\action' => $baseDir . '/src/admin/controllers/action.php',
+    'permission\\admin\\controllers\\actionList' => $baseDir . '/src/admin/controllers/actionList.php',
+    'permission\\admin\\controllers\\actionUpdate' => $baseDir . '/src/admin/controllers/actionUpdate.php',
+    'permission\\admin\\controllers\\area' => $baseDir . '/src/admin/controllers/area.php',
+    'permission\\admin\\controllers\\areaList' => $baseDir . '/src/admin/controllers/areaList.php',
+    'permission\\admin\\controllers\\areaUpdate' => $baseDir . '/src/admin/controllers/areaUpdate.php',
     'permission\\admin\\controllers\\baseControl' => $baseDir . '/src/admin/controllers/baseControl.php',
     'permission\\admin\\controllers\\permission' => $baseDir . '/src/admin/controllers/permission.php',
+    'permission\\admin\\controllers\\permissionList' => $baseDir . '/src/admin/controllers/permissionList.php',
+    'permission\\admin\\controllers\\permissionUpdate' => $baseDir . '/src/admin/controllers/permissionUpdate.php',
     'permission\\admin\\controllers\\profile' => $baseDir . '/src/admin/controllers/profile.php',
+    'permission\\admin\\controllers\\profileList' => $baseDir . '/src/admin/controllers/profileList.php',
+    'permission\\admin\\controllers\\profileUpdate' => $baseDir . '/src/admin/controllers/profileUpdate.php',
     'permission\\common\\models\\actions' => $baseDir . '/src/common/models/actions.php',
+    'permission\\common\\models\\areas' => $baseDir . '/src/common/models/areas.php',
     'permission\\common\\models\\permissions' => $baseDir . '/src/common/models/permissions.php',
     'permission\\common\\models\\profiles' => $baseDir . '/src/common/models/profiles.php',
 );

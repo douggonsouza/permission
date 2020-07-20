@@ -22,10 +22,20 @@ class ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0
 
     public static $classMap = array (
         'permission\\admin\\controllers\\action' => __DIR__ . '/../..' . '/src/admin/controllers/action.php',
+        'permission\\admin\\controllers\\actionList' => __DIR__ . '/../..' . '/src/admin/controllers/actionList.php',
+        'permission\\admin\\controllers\\actionUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/actionUpdate.php',
+        'permission\\admin\\controllers\\area' => __DIR__ . '/../..' . '/src/admin/controllers/area.php',
+        'permission\\admin\\controllers\\areaList' => __DIR__ . '/../..' . '/src/admin/controllers/areaList.php',
+        'permission\\admin\\controllers\\areaUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/areaUpdate.php',
         'permission\\admin\\controllers\\baseControl' => __DIR__ . '/../..' . '/src/admin/controllers/baseControl.php',
         'permission\\admin\\controllers\\permission' => __DIR__ . '/../..' . '/src/admin/controllers/permission.php',
+        'permission\\admin\\controllers\\permissionList' => __DIR__ . '/../..' . '/src/admin/controllers/permissionList.php',
+        'permission\\admin\\controllers\\permissionUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/permissionUpdate.php',
         'permission\\admin\\controllers\\profile' => __DIR__ . '/../..' . '/src/admin/controllers/profile.php',
+        'permission\\admin\\controllers\\profileList' => __DIR__ . '/../..' . '/src/admin/controllers/profileList.php',
+        'permission\\admin\\controllers\\profileUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/profileUpdate.php',
         'permission\\common\\models\\actions' => __DIR__ . '/../..' . '/src/common/models/actions.php',
+        'permission\\common\\models\\areas' => __DIR__ . '/../..' . '/src/common/models/areas.php',
         'permission\\common\\models\\permissions' => __DIR__ . '/../..' . '/src/common/models/permissions.php',
         'permission\\common\\models\\profiles' => __DIR__ . '/../..' . '/src/common/models/profiles.php',
     );
