@@ -3,6 +3,7 @@
 namespace permission\admin\controllers;
 
 use permission\admin\controllers\baseControl;
+use permission\common\models\profiles;
 
 class profileList extends baseControl
 {
@@ -16,29 +17,45 @@ class profileList extends baseControl
      */
     public function main(array $info)
     {
-        // license
-        // $this->isLicensed('permission-page-teachers', licenseActions::PERMISSIONS_TYPE_LIST);
-        
-        // if(array_key_exists('Y3JpYcOnw6NvIGRlIG5vdm8gcGVyZmls',$_POST)){
-        //     $licenseProfiles = new licenseProfiles();
-        //     $licenseProfiles->setValue('name', $_POST['name']);
-        //     $licenseProfiles->setValue('description', $_POST['description']);
-        //     if(!$licenseProfiles->save()){
-        //         alerts::set("Erro no salvamento do perfil.",'error');
-        //         parent::view(null, [
-        //             'title'      => 'Perfil',
-        //             'subtitle'   => 'Insere um novo perfil.',
-        //             'breadcump'  => [
-        //                 'Admin'  => BASE_URL.'/admin/index',
-        //                 'Perfil' => false
-        //             ]
-        //         ]);
-        //     }
-        //     alerts::set("Perfil salvo.",'success');
-        // }
+        $search = array();
+        if(array_key_exists('cHJvZmlsZUxpc3Q=',$_POST)){
+            $search = $this->search($_POST);
+        }
+
+        $profile = (new profiles())->seek($search);
+        $this->param('registros', null);
+        if(!$profile->isNew()){
+            $list = $profile->asArray();
+            $this->param('registros', $list);
+        }
 
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
         return $this->view();
+    }
+
+    /**
+     * Cria o array de busca
+     *
+     * @param array $post
+     * @return void
+     */
+    protected function search(array $post)
+    {
+        $search = array();
+
+        if(!isset($post) || empty($post)){
+            return $search;
+        }
+
+        if(isset($_POST['name']) && !empty($_POST['name'])){
+            $search['name'] = "name like '%".$_POST['name']."%'";
+        }
+
+        if(isset($_POST['label']) && !empty($_POST['label'])){
+            $search['label'] = "label like '%".$_POST['description']."%'";
+        }
+
+        return $search;
     }
 
     /**

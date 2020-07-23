@@ -37,6 +37,10 @@ class permission extends baseControl
         //     alerts::set("Permissão salva.",'success');
         // }
 
+        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
+
+        }
+
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
         return $this->view();
     }

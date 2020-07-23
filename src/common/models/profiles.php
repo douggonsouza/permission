@@ -16,7 +16,9 @@ class profiles extends model
      */
     public function __construct()
     {
-        parent::__construct($this->getTable(), $this->getKey());
+        if(!empty($this->getTable()) && !empty($this->getKey())){
+            parent::__construct($this->getTable(), $this->getKey());
+        }
     }
 
     /**

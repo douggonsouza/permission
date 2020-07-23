@@ -72,6 +72,9 @@ class areaUpdate extends baseControl
         //     'permissions'=> $permissions->dicionary(),
         // ]);
 
+        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
+
+        }
 
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
         return $this->view();
