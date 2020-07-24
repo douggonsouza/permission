@@ -10,7 +10,7 @@ class profileList extends baseControl
     const _LOCAL = __DIR__;
 
     /**
-     * Fun��o a ser executada no contexto da action
+     * Funï¿½ï¿½o a ser executada no contexto da action
      *
      * @param array $info
      * @return void
@@ -22,11 +22,10 @@ class profileList extends baseControl
             $search = $this->search($_POST);
         }
 
-        $profile = (new profiles())->seek($search);
         $this->param('registros', null);
+        $profile = (new profiles())->seek($search);
         if(!$profile->isNew()){
-            $list = $profile->asArray();
-            $this->param('registros', $list);
+            $this->param('registros', $profile);
         }
 
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');

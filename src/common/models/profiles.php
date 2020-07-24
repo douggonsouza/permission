@@ -22,7 +22,7 @@ class profiles extends model
     }
 
     /**
-     * Informações das colunas visíveis
+     * InformaÃ§Ãµes das colunas visÃ­veis
      *
      * @return void
      */
@@ -36,21 +36,25 @@ class profiles extends model
                     'label' => 'Id',
                     'pk'    => true,
                     'type'  => 'integer',
+                    'limit' => 11
                 ),
                 'name' => array(
-                    'label' => 'Identificador',
+                    'label' => 'dentificador',
                     'pk'    => false,
-                    'type'  => 'integer',
+                    'type'  => 'varchar',
+                    'limit' => 90
                 ),
                 'label' => array(
                     'label' => 'Primeiro nome',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 90
                 ),
                 'description' => array(
                     'label' => 'Primeiro nome',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 255
                 ),
             ),
         );
