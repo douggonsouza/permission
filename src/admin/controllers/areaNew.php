@@ -4,7 +4,7 @@ namespace permission\admin\controllers;
 
 use permission\admin\controllers\baseControl;
 
-class area extends baseControl
+class areaNew extends baseControl
 {
     const _LOCAL = __DIR__;
 

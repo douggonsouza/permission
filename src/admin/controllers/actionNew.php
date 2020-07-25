@@ -4,12 +4,12 @@ namespace permission\admin\controllers;
 
 use permission\admin\controllers\baseControl;
 
-class area extends baseControl
+class actionNew extends baseControl
 {
     const _LOCAL = __DIR__;
 
     /**
-     * Fun��o a ser executada no contexto da action
+     * Função a ser executada no contexto da action
      *
      * @param array $info
      * @return void
@@ -30,15 +30,15 @@ class area extends baseControl
 
         //         if(!$licenseAction->deleteActions((int) $_POST['profile_id'], (int) $_POST['permission_id'])){
         //             $licenseAction->rollbackTransaction();
-        //             alerts::set("Erro na dele��o de a��es pr�-existentes.",'error');
+        //             alerts::set("Erro na deleção de ações pré-existentes.",'error');
         //             parent::view(null, [
         //                 'profiles'   => $profiles->dicionary(),
         //                 'permissions'=> $permissions->dicionary(),
-        //                 'title'      => 'A��o',
-        //                 'subtitle'   => 'Insere nova a��es permitidas.',
+        //                 'title'      => 'Ação',
+        //                 'subtitle'   => 'Insere nova ações permitidas.',
         //                 'breadcump'  => [
         //                     'Admin'  => BASE_URL.'/admin/index',
-        //                     'A��o'   => false
+        //                     'Ação'   => false
         //                 ]
         //             ]);
         //         }
@@ -49,22 +49,22 @@ class area extends baseControl
         //             $action->setValue('action', $indice);
         //             if(!$action->save()){
         //                 $licenseAction->rollbackTransaction();
-        //                 alerts::set("Erro no salvamento da a��o.",'error');
+        //                 alerts::set("Erro no salvamento da ação.",'error');
         //                 parent::view(null, [
         //                     'profiles'   => $profiles->dicionary(),
         //                     'permissions'=> $permissions->dicionary(),
-        //                     'title'      => 'A��o',
-        //                     'subtitle'   => 'Insere nova a��es permitidas.',
+        //                     'title'      => 'Ação',
+        //                     'subtitle'   => 'Insere nova ações permitidas.',
         //                     'breadcump'  => [
         //                         'Admin'  => BASE_URL.'/admin/index',
-        //                         'A��o'   => false
+        //                         'Ação'   => false
         //                     ]
         //                 ]);
         //             }
         //         }
         //     }
         //     $licenseAction->commitTransaction();
-        //     alerts::set("A��es foram salvas.",'success');
+        //     alerts::set("Ações foram salvas.",'success');
         // }
 
         // parent::view(null, [
