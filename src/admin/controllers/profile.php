@@ -40,7 +40,7 @@ class profile extends baseControl
      */
     protected function search(array $post)
     {
-        $search = array();
+        $search = array('active = 1');
 
         if(!isset($post) || empty($post)){
             return $search;
@@ -51,7 +51,7 @@ class profile extends baseControl
         }
 
         if(isset($_POST['label']) && !empty($_POST['label'])){
-            $search['label'] = "label like '%".$_POST['description']."%'";
+            $search['label'] = "label like '%".$_POST['label']."%'";
         }
 
         return $search;

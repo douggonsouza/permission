@@ -19,7 +19,7 @@ class permissions extends model
     }
 
     /**
-     * Informações das colunas visíveis
+     * InformaÃ§Ãµes das colunas visÃ­veis
      *
      * @return void
      */
@@ -33,24 +33,66 @@ class permissions extends model
                     'label' => 'Id',
                     'pk'    => true,
                     'type'  => 'integer',
+                    'limit' => 11
                 ),
                 'profile_id' => array(
                     'label' => 'Perfil',
                     'pk'    => false,
                     'type'  => 'integer',
+                    'limit' => 11
                 ),
                 'area_id' => array(
                     'label' => 'Area',
                     'pk'    => false,
                     'type'  => 'integer',
+                    'limit' => 11
                 ),
                 'action_slug' => array(
-                    'label' => 'Ação',
+                    'label' => 'AÃ§Ã£o',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 15
                 ),
             ),
         );
+    }
+
+    public function slugs()
+    {
+        $slugs = [];
+        $sql = "SELECT action_id as value, slug as label FROM actions;";
+
+        $slugsResouce = new resource();
+        if(!$slugsResouce::query($sql)){
+            return false;
+        }
+
+        foreach($slugsResouce::asAllArray() as $item){
+            $slugs[$item['value']] = $item['label'];
+        }
+
+        return $slugs;
+    }
+
+    /**
+     * Valida a permissÃƒÂ£o para itens do Menu
+     *
+     * @param string $slug
+     * @param array $slugs
+     * @param array $views
+     * @return void
+     */
+    public function menuPermission(string $slug, array $slugs, array $views)
+    {
+        if(empty($slug) || empty($slugs) || empty($views)){
+            return false;
+        }
+            
+        $idSlug = array_search($slug, $slugs);
+        if(!isset($idSlug) || empty($idSlug))
+            return false;
+
+        return in_array($idSlug, $views);
     }
 
     public function licenses(int $profileId)
@@ -112,7 +154,7 @@ class permissions extends model
             $permissionId
         );
         return $this->query($sql);
-    } 
+    }
 
     /**
      * Colhe o valor para table

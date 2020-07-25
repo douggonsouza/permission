@@ -3,47 +3,65 @@
 namespace permission\admin\controllers;
 
 use permission\admin\controllers\baseControl;
+use permission\common\models\permissions;
 
 class permission extends baseControl
 {
     const _LOCAL = __DIR__;
 
     /**
-     * Fun��o a ser executada no contexto da action
+     * Função a ser executada no contexto da action
      *
      * @param array $info
      * @return void
      */
     public function main(array $info)
     {
-        // license
-        // $this->isLicensed('permission-page-teachers', licenseActions::PERMISSIONS_TYPE_LIST);
-        
-        // if(array_key_exists('Y3JpYcOnw6NvIGRlIG5vdmEgcGVybWlzc8Ojbw==',$_POST)){
-        //     $licensePermission = new licensePermissions();
-        //     $licensePermission->setValue('slug', $_POST['slug']);
-        //     $licensePermission->setValue('description', $_POST['description']);
-        //     if(!$licensePermission->save()){
-        //         alerts::set("Erro no salvamento da permissão.",'error');
-        //         parent::view(null, [
-        //             'title'      => 'Permissão',
-        //             'subtitle'   => 'Insere um nova permissão.',
-        //             'breadcump'  => [
-        //                 'Admin'  => BASE_URL.'/admin/index',
-        //                 'Permissão' => false
-        //             ]
-        //         ]);
-        //     }
-        //     alerts::set("Permissão salva.",'success');
-        // }
+        self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
+        $search = array();
         if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
-
+            $search = $this->search($_POST);
         }
 
-        self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
+        $this->param('registros', null);
+        $permissions = (new permissions())->seek($search);
+        if(!$permissions->isNew()){
+            $this->param('registros', $permissions);
+        }
+        
         return $this->view();
     }
+
+    /**
+     * Cria o array de busca
+     *
+     * @param array $post
+     * @return void
+     */
+    protected function search(array $post)
+    {
+        $search = array('active = 1');
+
+        if(!isset($post) || empty($post)){
+            return $search;
+        }
+
+        if(isset($_POST['profile_id']) && !empty($_POST['profile_id'])){
+            $search['profile_id'] = "profile_id = ".$_POST['profile_id'];
+        }
+
+        if(isset($_POST['area_id']) && !empty($_POST['area_id'])){
+            $search['area_id'] = "area_id = ".$_POST['area_id'];
+        }
+
+        if(isset($_POST['action_slug']) && !empty($_POST['action_slug'])){
+            $search['action_slug'] = "action_slug = ".$_POST['action_slug'];
+        }
+
+        return $search;
+    }
+
 
     /**
      * Para ser disparado antes

@@ -8,18 +8,18 @@ class users extends model
 {
     public $table = 'users';
     public $key   = 'user_id';
-    public $dicionary = "SELECT user_id as value, CONCAT(first_name,' ',last_name) as label FROM users;";
+    public $dicionary = "SELECT user_id as value, name as label FROM users;";
 
     /**
      * Evento construtor da classe
      */
     public function __construct()
     {
-        parent::__construct($this->table, $this->key);
+        parent::__construct($this->getTable(), $this->getKey());
     }
 
     /**
-     * Informações das colunas visíveis
+     * InformaÃ§Ãµes das colunas visÃ­veis
      *
      * @return void
      */
@@ -33,48 +33,97 @@ class users extends model
                     'label' => 'Id',
                     'pk'    => true,
                     'type'  => 'integer',
+                    'limit' => 11
                 ),
-                'checkpoint_identifier' => array(
-                    'label' => 'Identificador',
+                'name' => array(
+                    'label' => 'Nome',
+                    'pk'    => false,
+                    'type'  => 'varchar',
+                    'limit' => 120
+                ),
+                'profile_id' => array(
+                    'label' => 'Perfil',
                     'pk'    => false,
                     'type'  => 'integer',
-                ),
-                'first_name' => array(
-                    'label' => 'Primeiro nome',
-                    'pk'    => false,
-                    'type'  => 'varchar',
-                ),
-                'last_name' => array(
-                    'label' => 'Último nome',
-                    'pk'    => false,
-                    'type'  => 'varchar',
+                    'limit' => 11
                 ),
                 'email' => array(
                     'label' => 'E-mail',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 160
                 ),
-                'permission_roles_list' => array(
-                    'label' => 'Lista de regras',
+                'birth' => array(
+                    'label' => 'Nascimento',
+                    'pk'    => false,
+                    'type'  => 'date',
+                    'limit' => 20
+                ),
+                'ddd' => array(
+                    'label' => 'DDD',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 3
                 ),
-                'data_profiles_list' => array(
-                    'label' => 'Lista do perfil',
+                'phone' => array(
+                    'label' => 'Fone',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 15
+                ),
+                'password' => array(
+                    'label' => 'Senha',
+                    'pk'    => false,
+                    'type'  => 'varchar',
+                    'limit' => 90
                 ),
             ),
         );
-    } 
+    }
 
     /**
-     * Cardinalidade com a tabela api_tokens
-     *
-     * @return object
-     */
-    public function apiTokens()
+     * Colhe o valor para table
+     */ 
+    public function getTable()
     {
-        return $this->oneForMany(new apiTokens(), 'user_id');
+        return $this->table;
+    }
+
+    /**
+     * Define o valor para table
+     *
+     * @param string $table
+     * 
+     * @return  self
+     */ 
+    public function setTable(string $table)
+    {
+        if(isset($table))
+            $this->table = $table;
+
+        return $this;
+    }
+
+    /**
+     * Colhe o valor para key
+     */ 
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * Define o valor para key
+     *
+     * @param string $key
+     *
+     * @return  self
+     */ 
+    public function setKey(string $key)
+    {
+        if(isset($key))
+            $this->key = $key;
+
+        return $this;
     }
 }

@@ -1,7 +1,7 @@
-<div>
+                <div>
                     <div class="card">
                         <div class="card-header">
-                            <strong>Area</strong>
+                            <strong>Ação</strong>
                         </div>
                         <div class="card-body card-block">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -10,17 +10,17 @@
                                         <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Slug:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="slug" name="slug" placeholder="" class="form-control">
-                                        <small class="form-text text-muted">Nome identificador da area.</small>
+                                        <input type="text" id="action_slug" name="action_slug" placeholder="" class="form-control">
+                                        <small class="form-text text-muted">Nome identificador da ação.</small>
                                     </div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Etiqueta:</label>
+                                        <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Label:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <input type="text" id="label" name="label" placeholder="" class="form-control">
-                                        <small class="form-text text-muted">Etiqueta da area.</small>
+                                        <small class="form-text text-muted">Etiqueta da ação.</small>
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -29,12 +29,11 @@
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <input type="text" id="description" name="description" placeholder="" class="form-control">
-                                        <small class="form-text text-muted">Descrição da area.</small>
+                                        <small class="form-text text-muted">Descrição da ação.</small>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <input type="hidden" id="area_id" name="area_id" value="<?= !empty($profile->getField('area_id'))? $profile->getField('area_id'): null; ?>" class="form-control">
-                                    <button type="submit" name="YXJlYVVwZGF0ZQ==" class="btn btn-primary btn-sm">
+                                    <button type="submit" name="YWN0aW9u" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Enviar
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">

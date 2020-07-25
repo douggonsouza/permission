@@ -34,21 +34,25 @@ class areas extends model
                     'label' => 'Id',
                     'pk'    => true,
                     'type'  => 'integer',
+                    'limit' => 11
                 ),
                 'slug' => array(
                     'label' => 'Identificador',
                     'pk'    => false,
                     'type'  => 'integer',
+                    'limit' => 90
                 ),
                 'label' => array(
                     'label' => 'Etiqueta',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 45
                 ),
                 'description' => array(
                     'label' => 'Descrição',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 160
                 ),
             ),
         );

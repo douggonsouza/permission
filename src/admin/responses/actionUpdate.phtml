@@ -10,7 +10,7 @@
                                         <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Slug:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="action_slug" name="action_slug" placeholder="Identificador ..." class="form-control">
+                                        <input type="text" id="action_slug" name="action_slug" placeholder="" class="form-control">
                                         <small class="form-text text-muted">Nome identificador da ação.</small>
                                     </div>
                                 </div>
@@ -19,7 +19,7 @@
                                         <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Label:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="label" name="label" placeholder="Etiqueta ..." class="form-control">
+                                        <input type="text" id="label" name="label" placeholder="" class="form-control">
                                         <small class="form-text text-muted">Etiqueta da ação.</small>
                                     </div>
                                 </div>
@@ -28,11 +28,12 @@
                                         <label for="text-input" class=" form-control-label">Descrição:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="description" name="description" placeholder="Descrição ..." class="form-control">
+                                        <input type="text" id="description" name="description" placeholder="" class="form-control">
                                         <small class="form-text text-muted">Descrição da ação.</small>
                                     </div>
                                 </div>
                                 <div class="card-footer">
+                                    <input type="hidden" id="action_id" name="action_id" value="<?= !empty($profile->getField('action_id'))? $profile->getField('action_id'): null; ?>" class="form-control">
                                     <button type="submit" name="YWN0aW9uVXBkYXRl" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Enviar
                                     </button>

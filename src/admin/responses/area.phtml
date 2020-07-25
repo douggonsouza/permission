@@ -1,31 +1,27 @@
-<div>
+                <div>
                     <div class="card">
                         <div class="card-header">
-                            <strong>Area</strong>
+                            <strong>Lista</strong><small> Areas</small>
                         </div>
                         <div class="card-body card-block">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Slug:</label>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="company" class=" form-control-label">Slug</label>
+                                            <input type="text" id="slug" name="slug" placeholder="" class="form-control">
+                                        </div>
                                     </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="text" id="slug" name="slug" placeholder="Identificador..." class="form-control">
-                                        <small class="form-text text-muted">Nome identificador da area.</small>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label">Descrição:</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="text" id="description" name="description" placeholder="Descrição..." class="form-control">
-                                        <small class="form-text text-muted">Descrição da area.</small>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="vat" class=" form-control-label">Etiqueta</label>
+                                            <input type="text" id="label" name="label" placeholder="" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" name="YXJlYQ==" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-dot-circle-o"></i> Enviar
+                                    <button type="submit" name="YXJlYUxpc3Q=" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Buscar
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">
                                         <i class="fa fa-ban"></i> Limpar
@@ -34,11 +30,59 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="copyright">
-                        <p>Copyright © 2020 DOUGGS. All rights reserved.</p>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Navegação</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group">
+                                <div class="col-2">
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/areaNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DATA TABLE-->
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Slug</th>
+                                    <th>Etiqueta</th>
+                                    <th>Descrição</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if(isset($registros)){
+                                        while(!$registros->isEof()){
+                                ?>
+                                <tr>
+                                    <td><a href="<?= _root ?>/admin/permissions/action/<?= $registros->getField('action_id') ?>"><?= $registros->getField('action_id') ?></a></td>
+                                    <td><?= $registros->getField('slug') ?></td>
+                                    <td><?= $registros->getField('label') ?></td>
+                                    <td><?= $registros->getField('description') ?></td>
+                                    <td></td>
+                                </tr>
+                                <?php
+                                            $registros->next();
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END DATA TABLE-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                            <p>Copyright© 2020 DOUGGS. All rights reserved.</p>
+                            </div>
                         </div>
                     </div>
                 </div>

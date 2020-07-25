@@ -34,62 +34,28 @@ class actions extends model
                     'label' => 'Id',
                     'pk'    => true,
                     'type'  => 'integer',
+                    'limit' => 11
                 ),
                 'slug' => array(
                     'label' => 'Identificador',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 15
                 ),
                 'label' => array(
                     'label' => 'Etiqueta',
                     'pk'    => false,
                     'type'  => 'integer',
+                    'limit' => 45
                 ),
                 'description' => array(
                     'label' => 'Descrição',
                     'pk'    => false,
                     'type'  => 'varchar',
+                    'limit' => 255
                 ),
             ),
         );
-    }
-
-    public function slugs()
-    {
-        $slugs = [];
-        $sql = "SELECT action_id as value, slug as label FROM actions;";
-
-        $slugsResouce = new resource();
-        if(!$slugsResouce::query($sql)){
-            return false;
-        }
-
-        foreach($slugsResouce::asAllArray() as $item){
-            $slugs[$item['value']] = $item['label'];
-        }
-
-        return $slugs;
-    }
-
-    /**
-     * Valida a permissÃ£o para itens do Menu
-     *
-     * @param string $slug
-     * @param array $slugs
-     * @param array $views
-     * @return void
-     */
-    public function menuPermission(string $slug, array $slugs, array $views)
-    {
-        if(empty($slug) || empty($slugs) || empty($views)){
-            return false;
-        }
-            
-        $idSlug = array_search($slug, $slugs);
-        if(!isset($idSlug) || empty($idSlug))
-            return false;
-
-        return in_array($idSlug, $views);
     }
 
     /**

@@ -1,83 +1,48 @@
                 <div>
                     <div class="card">
                         <div class="card-header">
-                            <strong>Permissão</strong>
+                            <strong>Lista</strong><small> Permissões</small>
                         </div>
                         <div class="card-body card-block">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="select" class=" form-control-label">Perfil</label>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="company" class=" form-control-label">Perfil</label>
+                                            <select name="profile_id" id="profile_id" class="form-control">
+                                                <option value="0">Please select</option>
+                                                <option value="1">Option #1</option>
+                                                <option value="2">Option #2</option>
+                                                <option value="3">Option #3</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-12 col-md-9">
-                                        <select name="profile_id" id="profile_id" class="form-control">
-                                            <option value="0">Please select</option>
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                        </select>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="vat" class=" form-control-label">Area</label>
+                                            <select name="area_id" id="area_id" class="form-control">
+                                                <option value="0">Please select</option>
+                                                <option value="1">Option #1</option>
+                                                <option value="2">Option #2</option>
+                                                <option value="3">Option #3</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="select" class=" form-control-label">Ýrea</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <select name="area_id" id="area_id" class="form-control">
-                                            <option value="0">Please select</option>
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label class=" form-control-label">Ação</label>
-                                    </div>
-                                    <div class="col col-md-9">
-                                        <div class="form-check">
-                                            <div class="checkbox">
-                                                <label for="checkbox1" class="form-check-label ">
-                                                    <input type="checkbox" id="view" name="action[view]" value="view" class="form-check-input"> Ver
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox2" class="form-check-label ">
-                                                    <input type="checkbox" id="list" name="action[list]" value="list" class="form-check-input"> Listar
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox3" class="form-check-label ">
-                                                    <input type="checkbox" id="insert" name="action[insert]" value="insert" class="form-check-input"> Criar
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox1" class="form-check-label ">
-                                                    <input type="checkbox" id="update" name="action[update]" value="update" class="form-check-input"> Mudar
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox2" class="form-check-label ">
-                                                    <input type="checkbox" id="delete" name="action[delete]" value="delete" class="form-check-input"> Excluir
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox3" class="form-check-label ">
-                                                    <input type="checkbox" id="download" name="action[download]" value="download" class="form-check-input"> Baixar
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox3" class="form-check-label ">
-                                                    <input type="checkbox" id="upload" name="action[upload]" value="upload" class="form-check-input"> Enviar
-                                                </label>
-                                            </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="vat" class=" form-control-label">Ação</label>
+                                            <select name="action_slug" id="action_slug" class="form-control">
+                                                <option value="0">Please select</option>
+                                                <option value="1">Option #1</option>
+                                                <option value="2">Option #2</option>
+                                                <option value="3">Option #3</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" name="cGVybWlzc2lvbg==" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-dot-circle-o"></i> Enviar
+                                    <button type="submit" name="cGVybWlzc2lvbkxpc3Q=" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Buscar
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">
                                         <i class="fa fa-ban"></i> Limpar
@@ -86,11 +51,61 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="copyright">
-                        <p>Copyright © 2020 DOUGGS. All rights reserved.</p>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Navegação</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group">
+                                <div class="col-2">
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/permissionNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DATA TABLE-->
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Perfil</th>
+                                    <th>Area</th>
+                                    <th>Ação</th>
+                                    <th>Descrição</th>
+                                    <th>...</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if(isset($registros)){
+                                        while(!$registros->isEof()){
+                                ?>
+                                <tr>
+                                    <td><a href="<?= _root ?>/admin/permissions/permission/<?= $registros->getField('permission_id') ?>"><?= $registros->getField('permission_id') ?></a></td>
+                                    <td><?= $registros->getField('profile_id') ?></td>
+                                    <td><?= $registros->getField('area_id') ?></td>
+                                    <td><?= $registros->getField('action_slug') ?></td>
+                                    <td><?= $registros->getField('description') ?></td>
+                                    <td></td>
+                                </tr>
+                                <?php
+                                            $registros->next();
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END DATA TABLE-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                            <p>Copyright© 2020 DOUGGS. All rights reserved.</p>
+                            </div>
                         </div>
                     </div>
                 </div>

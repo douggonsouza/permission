@@ -10,7 +10,7 @@ class profileUpdate extends baseControl
     const _LOCAL = __DIR__;
 
     /**
-     * Fun��o a ser executada no contexto da action
+     * Função a ser executada no contexto da action
      *
      * @param array $info
      * @return void
