@@ -53,7 +53,7 @@
                                     <th>Slug</th>
                                     <th>Etiqueta</th>
                                     <th>Descrição</th>
-                                    <th>Ação</th>
+                                    <th>...</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,7 +62,7 @@
                                         while(!$registros->isEof()){
                                 ?>
                                 <tr>
-                                    <td><a href="<?= _root ?>/admin/permissions/action/<?= $registros->getField('action_id') ?>"><?= $registros->getField('action_id') ?></a></td>
+                                    <td><a href="<?= _root ?>/admin/permissions/area/<?= $registros->getField('area_id') ?>"><?= $registros->getField('area_id') ?></a></td>
                                     <td><?= $registros->getField('slug') ?></td>
                                     <td><?= $registros->getField('label') ?></td>
                                     <td><?= $registros->getField('description') ?></td>

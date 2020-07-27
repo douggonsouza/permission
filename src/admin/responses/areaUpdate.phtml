@@ -10,7 +10,7 @@
                                         <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Slug:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="slug" name="slug" placeholder="" class="form-control">
+                                        <input type="text" id="slug" name="slug" value="<?= $area->getField('slug'); ?>" placeholder="" class="form-control">
                                         <small class="form-text text-muted">Nome identificador da area.</small>
                                     </div>
                                 </div>
@@ -19,7 +19,7 @@
                                         <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Etiqueta:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="label" name="label" placeholder="" class="form-control">
+                                        <input type="text" id="label" name="label" value="<?= $area->getField('label'); ?>" placeholder="" class="form-control">
                                         <small class="form-text text-muted">Etiqueta da area.</small>
                                     </div>
                                 </div>
@@ -28,12 +28,12 @@
                                         <label for="text-input" class=" form-control-label">Descrição:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="description" name="description" placeholder="" class="form-control">
+                                        <input type="text" id="description" name="description" value="<?= $area->getField('description'); ?>" placeholder="" class="form-control">
                                         <small class="form-text text-muted">Descrição da area.</small>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <input type="hidden" id="area_id" name="area_id" value="<?= !empty($profile->getField('area_id'))? $profile->getField('area_id'): null; ?>" class="form-control">
+                                    <input type="hidden" id="area_id" name="area_id" value="<?= !empty($area->getField('area_id'))? $area->getField('area_id'): null; ?>" class="form-control">
                                     <button type="submit" name="YXJlYVVwZGF0ZQ==" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Enviar
                                     </button>

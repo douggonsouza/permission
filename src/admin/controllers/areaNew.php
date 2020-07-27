@@ -19,7 +19,7 @@ class areaNew extends baseControl
     {
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
+        if(array_key_exists('YXJlYQ==',$_POST)){
             $area = new areas();
             $area->populate($_POST);
             if(!$area->save()){

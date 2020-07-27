@@ -3,8 +3,9 @@
 namespace root\home\models;
 
 use data\model\model;
+use data\model\modelInterface;
 
-class users extends model
+class users extends model implements modelInterface
 {
     public $table = 'users';
     public $key   = 'user_id';
@@ -15,7 +16,9 @@ class users extends model
      */
     public function __construct()
     {
-        parent::__construct($this->getTable(), $this->getKey());
+        if(!empty($this->getTable()) && !empty($this->getKey())){
+            parent::__construct($this->getTable(), $this->getKey());
+        }
     }
 
     /**

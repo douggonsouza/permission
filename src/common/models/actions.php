@@ -3,9 +3,9 @@
 namespace permission\common\models;
 
 use data\model\model;
-use data\resource\resource;
+use data\model\modelInterface;
 
-class actions extends model
+class actions extends model implements modelInterface
 {
     public $table = 'actions';
     public $key   = 'action_id';
@@ -16,7 +16,9 @@ class actions extends model
      */
     public function __construct()
     {
-        parent::__construct($this->getTable(), $this->getTable());
+        if(!empty($this->getTable()) && !empty($this->getKey())){
+            parent::__construct($this->getTable(), $this->getKey());
+        }
     }
 
     /**

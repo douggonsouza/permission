@@ -74,7 +74,6 @@
                                     <th>Perfil</th>
                                     <th>Area</th>
                                     <th>Ação</th>
-                                    <th>Descrição</th>
                                     <th>...</th>
                                 </tr>
                             </thead>
@@ -85,10 +84,9 @@
                                 ?>
                                 <tr>
                                     <td><a href="<?= _root ?>/admin/permissions/permission/<?= $registros->getField('permission_id') ?>"><?= $registros->getField('permission_id') ?></a></td>
-                                    <td><?= $registros->getField('profile_id') ?></td>
-                                    <td><?= $registros->getField('area_id') ?></td>
-                                    <td><?= $registros->getField('action_slug') ?></td>
-                                    <td><?= $registros->getField('description') ?></td>
+                                    <td><?= $profile_id  = $registros->profile()->getField('label'); ?></td>
+                                    <td><?= $area_id     = $registros->area()->getField('label') ?></td>
+                                    <td><?= $action_slug = $registros->actionSlug()->getField('label') ?></td>
                                     <td></td>
                                 </tr>
                                 <?php

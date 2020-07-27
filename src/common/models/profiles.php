@@ -3,9 +3,9 @@
 namespace permission\common\models;
 
 use data\model\model;
-use data\resource\resource;
+use data\model\modelInterface;
 
-class profiles extends model
+class profiles extends model implements modelInterface
 {
     public $table = 'profiles';
     public $key   = 'profile_id';

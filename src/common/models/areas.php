@@ -3,9 +3,9 @@
 namespace permission\common\models;
 
 use data\model\model;
-use data\resource\resource;
+use data\model\modelInterface;
 
-class areas extends model
+class areas extends model implements modelInterface
 {
     public $table = 'areas';
     public $key   = 'area_id';
@@ -16,7 +16,9 @@ class areas extends model
      */
     public function __construct()
     {
-        parent::__construct($this->getTable(), $this->getTable());
+        if(!empty($this->getTable()) && !empty($this->getKey())){
+            parent::__construct($this->getTable(), $this->getKey());
+        };
     }
 
     /**
@@ -39,7 +41,7 @@ class areas extends model
                 'slug' => array(
                     'label' => 'Identificador',
                     'pk'    => false,
-                    'type'  => 'integer',
+                    'type'  => 'varchar',
                     'limit' => 90
                 ),
                 'label' => array(
