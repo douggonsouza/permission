@@ -38,7 +38,7 @@ class actions extends model implements modelInterface
                     'type'  => 'integer',
                     'limit' => 11
                 ),
-                'slug' => array(
+                'action_slug' => array(
                     'label' => 'Identificador',
                     'pk'    => false,
                     'type'  => 'varchar',
@@ -47,7 +47,7 @@ class actions extends model implements modelInterface
                 'label' => array(
                     'label' => 'Etiqueta',
                     'pk'    => false,
-                    'type'  => 'integer',
+                    'type'  => 'varchar',
                     'limit' => 45
                 ),
                 'description' => array(

@@ -63,9 +63,33 @@ class permissions extends model implements modelInterface
         );
     }
 
+    /**
+     * Devolve sql para a realização da busca
+     *
+     * @return void
+     */
+    public function getSeek()
+    {
+        return "SELECT
+            prf.profile_id,
+            prf.label profile_label,
+            prm.area_id,
+            ars.label area_label,
+            GROUP_CONCAT(distinct prm.action_slug) slugs
+        FROM permissions AS prm
+        JOIN profiles AS prf ON prf.profile_id = prm.profile_id AND prf.active = 1
+        JOIN actions AS act ON act.action_slug = prm.action_slug AND act.active = 1
+        JOIN areas AS ars ON ars.area_id = prm.area_id AND ars.active = 1
+        WHERE
+            prm.active = 1
+        GROUP BY
+            prf.profile_id,
+            ars.area_id;";
+    }
+
     public function profile()
     {
-        if(!empty($this->getField('profile_id'))){
+        if(empty($this->getField('profile_id'))){
             return null;
         }
 
@@ -74,16 +98,16 @@ class permissions extends model implements modelInterface
 
     public function area()
     {
-        if(!empty($this->getField('area_id'))){
+        if(empty($this->getField('area_id'))){
             return null;
         }
 
         return $this->manyForOne(new areas(), 'area_id');
     }
 
-    public function actionSlug()
+    public function action()
     {
-        if(!empty($this->getField('action_slug'))){
+        if(empty($this->getField('action_slug'))){
             return null;
         }
 

@@ -19,7 +19,7 @@ class permissionNew extends baseControl
     {
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
+        if(array_key_exists('cGVybWlzc2lvbg==',$_POST)){
             $permission = new permissions();
             $permission->populate($_POST);
             if(!$permission->save()){

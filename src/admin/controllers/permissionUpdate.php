@@ -20,7 +20,7 @@ class permissionUpdate extends baseControl
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
         $this->param('permission', null);
-        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
+        if(array_key_exists('cGVybWlzc2lvblVwZGF0ZQ==',$_POST)){
             $permission = new permissions();
             $permission->populate($_POST);
             if(!$permission->save()){

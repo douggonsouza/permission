@@ -10,7 +10,7 @@
                                         <label for="select" class=" form-control-label">Perfil</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <select name="profile_id" id="profile_id" class="form-control">
+                                        <select name="profile_id" id="profile_id" class="form-control" required >
                                             <option value="0">Please select</option>
                                             <option value="1">Option #1</option>
                                             <option value="2">Option #2</option>
@@ -23,7 +23,7 @@
                                         <label for="select" class=" form-control-label">Area</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <select name="area_id" id="area_id" class="form-control">
+                                        <select name="area_id" id="area_id" class="form-control" required >
                                             <option value="0">Please select</option>
                                             <option value="1">Option #1</option>
                                             <option value="2">Option #2</option>
@@ -36,43 +36,14 @@
                                         <label class=" form-control-label">Ação</label>
                                     </div>
                                     <div class="col col-md-9">
-                                        <div class="form-check">
-                                            <div class="checkbox">
-                                                <label for="checkbox1" class="form-check-label ">
-                                                    <input type="checkbox" id="view" name="action[view]" value="view" class="form-check-input"> Ver
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox2" class="form-check-label ">
-                                                    <input type="checkbox" id="list" name="action[list]" value="list" class="form-check-input"> Listar
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox3" class="form-check-label ">
-                                                    <input type="checkbox" id="insert" name="action[insert]" value="insert" class="form-check-input"> Criar
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox1" class="form-check-label ">
-                                                    <input type="checkbox" id="update" name="action[update]" value="update" class="form-check-input"> Mudar
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox2" class="form-check-label ">
-                                                    <input type="checkbox" id="delete" name="action[delete]" value="delete" class="form-check-input"> Excluir
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox3" class="form-check-label ">
-                                                    <input type="checkbox" id="download" name="action[download]" value="download" class="form-check-input"> Baixar
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label for="checkbox3" class="form-check-label ">
-                                                    <input type="checkbox" id="upload" name="action[upload]" value="upload" class="form-check-input"> Enviar
-                                                </label>
-                                            </div>
-                                        </div>
+                                        <select name="action_slug[]" id="action_slug[]" class="form-control" required>
+                                            <option value="0">Please select</option>
+                                            <option value="1">Option #1</option>
+                                            <option value="2">Option #2</option>
+                                            <option value="3">Option #3</option>
+                                            <option value="4">Option #4</option>
+                                            <option value="5">Option #5</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="card-footer">

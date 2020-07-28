@@ -19,7 +19,7 @@ class actionNew extends baseControl
     {
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
+        if(array_key_exists('YWN0aW9u',$_POST)){
             $action = new actions();
             $action->populate($_POST);
             if(!$action->save()){

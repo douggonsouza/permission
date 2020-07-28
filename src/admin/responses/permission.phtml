@@ -70,7 +70,6 @@
                         <table class="table table-borderless table-data3">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Perfil</th>
                                     <th>Area</th>
                                     <th>Ação</th>
@@ -83,11 +82,10 @@
                                         while(!$registros->isEof()){
                                 ?>
                                 <tr>
-                                    <td><a href="<?= _root ?>/admin/permissions/permission/<?= $registros->getField('permission_id') ?>"><?= $registros->getField('permission_id') ?></a></td>
-                                    <td><?= $profile_id  = $registros->profile()->getField('label'); ?></td>
-                                    <td><?= $area_id     = $registros->area()->getField('label') ?></td>
-                                    <td><?= $action_slug = $registros->actionSlug()->getField('label') ?></td>
-                                    <td></td>
+                                    <td><?= $profile_id  = $registros->getField('profile_label'); ?></td>
+                                    <td><?= $area_id     = $registros->getField('area_label') ?></td>
+                                    <td><?= $action_slug = $registros->getField('slugs') ?></td>
+                                    <td><a class="btn btn-sm btn-warning" href="" target="_blank">Delete</a></td>
                                 </tr>
                                 <?php
                                             $registros->next();

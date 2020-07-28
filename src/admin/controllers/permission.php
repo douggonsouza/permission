@@ -20,12 +20,12 @@ class permission extends baseControl
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
         $search = array();
-        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
+        if(array_key_exists('cGVybWlzc2lvbkxpc3Q=',$_POST)){
             $search = $this->search($_POST);
         }
 
         $this->param('registros', null);
-        $permissions = (new permissions())->seek($search);
+        $permissions = (new permissions())->seek();
         if(!$permissions->isNew()){
             $this->param('registros', $permissions);
         }
