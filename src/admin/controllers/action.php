@@ -2,6 +2,7 @@
 
 namespace permission\admin\controllers;
 
+use driver\helper\html;
 use permission\admin\controllers\baseControl;
 use permission\common\models\actions;
 
@@ -30,7 +31,9 @@ class action extends baseControl
             $this->param('registros', $actions);
         }
 
-        return $this->view();
+        return $this->view(array(
+            'html' => new html()
+        ));
     }
 
     /**

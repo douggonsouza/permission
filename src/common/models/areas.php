@@ -9,7 +9,7 @@ class areas extends model implements modelInterface
 {
     public $table = 'areas';
     public $key   = 'area_id';
-    public $dicionary = "SELECT area_id as value, slug as label FROM areas;";
+    public $dicionary = "SELECT area_id as value, label FROM areas;";
 
     /**
      * Evento construtor da classe

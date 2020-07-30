@@ -2,6 +2,7 @@
 
 namespace permission\admin\controllers;
 
+use driver\helper\html;
 use permission\admin\controllers\baseControl;
 use permission\common\models\profiles;
 
@@ -17,19 +18,22 @@ class profile extends baseControl
      */
     public function main(array $info)
     {
+        self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
+        
         $search = array();
         if(array_key_exists('cHJvZmlsZUxpc3Q=',$_POST)){
             $search = $this->search($_POST);
         }
 
         $this->param('registros', null);
-        $profile = (new profiles())->seek($search);
+        $profile = (new profiles())->seek();
         if(!$profile->isNew()){
             $this->param('registros', $profile);
         }
 
-        self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
-        return $this->view();
+        return $this->view(array(
+            'html' => new html()
+        ));
     }
 
     /**

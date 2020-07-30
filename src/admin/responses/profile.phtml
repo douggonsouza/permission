@@ -1,4 +1,18 @@
                 <div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Ações</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group">
+                                <div class="col-2">
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/profileNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card">
                         <div class="card-header">
                             <strong>Lista</strong><small> Perfis</small>
@@ -31,19 +45,6 @@
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Navegação</strong>
-                        </div>
-                        <div class="card-body">
-                            <div class="row form-group">
-                                <div class="col-2">
-                                    <a target="_blank" href="<?= _root ?>/admin/permissions/profileNew" class="btn btn-sm btn-outline-primary">Novo</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- DATA TABLE-->
                     <div class="table-responsive m-b-40">
                         <table class="table table-borderless table-data3">
@@ -53,7 +54,7 @@
                                     <th>Nome</th>
                                     <th>Etiqueta</th>
                                     <th>Descrição</th>
-                                    <th>...</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,7 +67,7 @@
                                     <td><?= $registros->getField('name') ?></td>
                                     <td><?= $registros->getField('label') ?></td>
                                     <td><?= $registros->getField('description') ?></td>
-                                    <td></td>
+                                    <td><a class="btn btn-sm btn-danger" href="<?= _root ?>/admin/permissions/profileDelete/<?= $registros->getField('profile_id') ?>" target="_blank">Delete</a></td>
                                 </tr>
                                 <?php
                                             $registros->next();
@@ -77,6 +78,19 @@
                         </table>
                     </div>
                     <!-- END DATA TABLE-->
+
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Ações</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group">
+                                <div class="col-2">
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/profileNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-12">

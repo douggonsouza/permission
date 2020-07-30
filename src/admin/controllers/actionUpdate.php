@@ -30,7 +30,7 @@ class actionUpdate extends baseControl
 
         $action = (new actions())->search(
             array(
-                'action_id = '.$info['url'][1]
+                'action_id' => $info['url'][1]
             )
         );
         if(!$action->isNew()){

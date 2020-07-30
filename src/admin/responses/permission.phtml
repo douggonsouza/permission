@@ -1,6 +1,19 @@
                 <div>
                     <div class="card">
                         <div class="card-header">
+                            <strong class="card-title">Ações</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group">
+                                <div class="col-2">
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/permissionNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
                             <strong>Lista</strong><small> Permissões</small>
                         </div>
                         <div class="card-body card-block">
@@ -9,34 +22,19 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="company" class=" form-control-label">Perfil</label>
-                                            <select name="profile_id" id="profile_id" class="form-control">
-                                                <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
-                                            </select>
+                                            <?= $html->select('profile_id', $profiles, array('class' => 'form-control', 'id' => 'profile_id')); ?>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Area</label>
-                                            <select name="area_id" id="area_id" class="form-control">
-                                                <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
-                                            </select>
+                                            <?= $html->select('area_id', $areas, array('class' => 'form-control', 'id' => 'area_id')); ?>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Ação</label>
-                                            <select name="action_slug" id="action_slug" class="form-control">
-                                                <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
-                                            </select>
+                                            <?= $html->select('action_slug', $actions, array('class' => 'form-control', 'id' => 'action_slug')); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -52,28 +50,14 @@
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Navegação</strong>
-                        </div>
-                        <div class="card-body">
-                            <div class="row form-group">
-                                <div class="col-2">
-                                    <a target="_blank" href="<?= _root ?>/admin/permissions/permissionNew" class="btn btn-sm btn-outline-primary">Novo</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- DATA TABLE-->
                     <div class="table-responsive m-b-40">
                         <table class="table table-borderless table-data3">
                             <thead>
                                 <tr>
-                                    <th>Perfil</th>
-                                    <th>Area</th>
+                                    <th>Perfil : Area</th>
                                     <th>Ação</th>
-                                    <th>...</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,10 +66,9 @@
                                         while(!$registros->isEof()){
                                 ?>
                                 <tr>
-                                    <td><?= $profile_id  = $registros->getField('profile_label'); ?></td>
-                                    <td><?= $area_id     = $registros->getField('area_label') ?></td>
-                                    <td><?= $action_slug = $registros->getField('slugs') ?></td>
-                                    <td><a class="btn btn-sm btn-warning" href="" target="_blank">Delete</a></td>
+                                    <td><a href="<?= _root ?>/admin/permissions/permission/<?= $registros->getField('profile_id') ?>/<?= $registros->getField('area_id') ?>"><?= $registros->getField('profile_label').' : '.$registros->getField('area_label') ?></a></td>
+                                    <td><?= $registros->getField('slugs') ?></td>
+                                    <td><a class="btn btn-sm btn-danger" href="<?= _root ?>/admin/permissions/permissionDelete/<?= $registros->getField('profile_id') ?>/<?= $registros->getField('area_id') ?>" target="_blank">Delete</a></td>
                                 </tr>
                                 <?php
                                             $registros->next();
@@ -96,6 +79,19 @@
                         </table>
                     </div>
                     <!-- END DATA TABLE-->
+
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Ações</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group">
+                                <div class="col-2">
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/permissionNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-12">

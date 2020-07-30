@@ -2,8 +2,13 @@
 
 namespace permission\admin\controllers;
 
+use driver\helper\html;
+use alerts\alerts\alerts;
 use permission\admin\controllers\baseControl;
 use permission\common\models\permissions;
+use permission\common\models\profiles;
+use permission\common\models\areas;
+use permission\common\models\actions;
 
 class permission extends baseControl
 {
@@ -29,8 +34,30 @@ class permission extends baseControl
         if(!$permissions->isNew()){
             $this->param('registros', $permissions);
         }
+
+        // Levanta as opções de profiles
+        $profiles = (new profiles())->dicionary();
+        if(!empty($profiles)){
+            $this->param('profiles', $profiles);
+        }
         
-        return $this->view();
+        // Levanta as opções de areas
+        $areas    = (new areas())->dicionary();
+        if(!empty($profiles)){
+            $this->param('areas', $areas);
+        }
+        
+        // Levanta as opões de actions
+        $actions  = (new actions())->dicionary();
+        if(!empty($actions)){
+            $this->param('actions', $actions);
+        }
+        
+        alerts::set('Listagem carregada com sucesso.');
+
+        return $this->view(array(
+            'html' => new html()
+        ));
     }
 
     /**

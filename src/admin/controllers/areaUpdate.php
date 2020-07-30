@@ -30,7 +30,7 @@ class areaUpdate extends baseControl
 
         $area = (new areas())->search(
             array(
-                'area_id = '.$info['url'][1]
+                'area_id' => $info['url'][1]
             )
         );
         if(!$area->isNew()){

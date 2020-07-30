@@ -4,6 +4,9 @@ namespace permission\admin\controllers;
 
 use permission\admin\controllers\baseControl;
 use permission\common\models\permissions;
+use permission\common\models\profiles;
+use permission\common\models\areas;
+use permission\common\models\actions;
 
 class permissionUpdate extends baseControl
 {
@@ -28,13 +31,33 @@ class permissionUpdate extends baseControl
             }
         }
 
+        // Levanta as permissions
         $permission = (new permissions())->search(
             array(
-                'permission_id = '.$info['url'][1]
+                'profile_id' => $info['url'][1],
+                'area_id'    => $info['url'][2]
             )
         );
         if(!$permission->isNew()){
             $this->param('permission', $permission);
+        }
+
+        // Levanta as opções de profiles
+        $profiles = (new profiles())->dicionary();
+        if(!empty($profiles)){
+            $this->param('profiles', $profiles);
+        }
+
+        // Levanta as opções de areas
+        $areas    = (new areas())->dicionary();
+        if(!empty($profiles)){
+            $this->param('areas', $areas);
+        }
+
+        // Levanta as opões de actions
+        $actions  = (new actions())->dicionary();
+        if(!empty($profiles)){
+            $this->param('actions', $action);
         }
 
         return $this->view();

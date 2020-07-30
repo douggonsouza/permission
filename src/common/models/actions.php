@@ -9,7 +9,7 @@ class actions extends model implements modelInterface
 {
     public $table = 'actions';
     public $key   = 'action_id';
-    public $dicionary = "SELECT action_id as value, slug as label FROM actions;";
+    public $dicionary = "SELECT action_slug as value, label FROM actions;";
 
     /**
      * Evento construtor da classe

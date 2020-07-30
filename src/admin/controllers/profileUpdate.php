@@ -28,7 +28,7 @@ class profileUpdate extends baseControl
 
         $profile = (new profiles())->search(
             array(
-                'profile_id = '.$info['url'][1]
+                'profile_id' => $info['url'][1]
             )
         );
         if(!$profile->isNew()){
