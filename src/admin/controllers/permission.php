@@ -52,8 +52,6 @@ class permission extends baseControl
         if(!empty($actions)){
             $this->param('actions', $actions);
         }
-        
-        alerts::set('Listagem carregada com sucesso.');
 
         return $this->view(array(
             'html' => new html()

@@ -17,6 +17,8 @@ class profileNew extends baseControl
      */
     public function main(array $info)
     {
+        self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
+        
         if(array_key_exists('cHJvZmlsZQ==',$_POST)){
             $profile = new profiles();
             $profile->populate($_POST);
@@ -25,7 +27,6 @@ class profileNew extends baseControl
             }
         }
 
-        self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
         return $this->view();
     }
 

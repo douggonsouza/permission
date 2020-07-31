@@ -5,6 +5,8 @@ namespace permission\admin\controllers;
 use driver\helper\html;
 use permission\admin\controllers\baseControl;
 use permission\common\models\profiles;
+use alerts\alerts\alerts;
+use driver\router\router;
 
 class profile extends baseControl
 {
@@ -30,6 +32,10 @@ class profile extends baseControl
         if(!$profile->isNew()){
             $this->param('registros', $profile);
         }
+
+        alerts::set('Perfil carregado com sucesso.');
+
+        router::relativeRedirection('/admin/permissions/profileNew');
 
         return $this->view(array(
             'html' => new html()
