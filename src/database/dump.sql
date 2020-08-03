@@ -15,7 +15,7 @@ CREATE TABLE `profiles` (
   `active` tinyint(1) DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`profile_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `actions` (
   `action_id` int NOT NULL AUTO_INCREMENT,
@@ -25,7 +25,7 @@ CREATE TABLE `actions` (
   `active` tinyint(1) DEFAULT '1',
   `create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`action_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `areas` (
   `area_id` int NOT NULL AUTO_INCREMENT,
@@ -35,7 +35,7 @@ CREATE TABLE `areas` (
   `active` tinyint(1) DEFAULT '1',
   `create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`area_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `permissions` (
   `permission_id` int NOT NULL AUTO_INCREMENT,
@@ -45,7 +45,7 @@ CREATE TABLE `permissions` (
   `active` tinyint(1) DEFAULT '1',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `users` (
   `user_id` int NOT NULL AUTO_INCREMENT,
@@ -63,7 +63,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`),
   KEY `fk_users_1_idx` (`profile_id`),
   CONSTRAINT `fk_users_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`profile_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
 -- Insere Permissões
 INSERT INTO areas VALUES (null, 'users', 'Usuários', 'Permitir Usuário', 1, now());

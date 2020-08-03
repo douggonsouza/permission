@@ -33,10 +33,6 @@ class profile extends baseControl
             $this->param('registros', $profile);
         }
 
-        alerts::set('Perfil carregado com sucesso.');
-
-        router::relativeRedirection('/admin/permissions/profileNew');
-
         return $this->view(array(
             'html' => new html()
         ));
