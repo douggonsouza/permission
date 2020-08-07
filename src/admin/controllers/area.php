@@ -20,9 +20,9 @@ class area extends baseControl
     {
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-        $search = array();
-        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ===',$_POST)){
-            $search = $this->search($_POST);
+        $search = $this->where($_POST);
+        if(array_key_exists('c2VhcmNoQXJlYQ==',$_POST)){
+            $search = $this->where($_POST);
         }
 
         $this->param('registros', null);
@@ -42,7 +42,7 @@ class area extends baseControl
      * @param array $post
      * @return void
      */
-    protected function search(array $post)
+    protected function search(array $post = null)
     {
         $search = array('active = 1');
 

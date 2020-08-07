@@ -21,25 +21,25 @@
                                 <div class="row form-group">
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="company" class=" form-control-label">Perfil</label>
-                                            <?= $html->select('profile_id', $profiles, array('class' => 'form-control', 'id' => 'profile_id')); ?>
+                                            <label for="profile_id" class=" form-control-label">Perfil</label>
+                                            <?= $html->select('profile_id', $profiles, array('class' => 'form-control')); ?>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Area</label>
-                                            <?= $html->select('area_id', $areas, array('class' => 'form-control', 'id' => 'area_id')); ?>
+                                            <label for="area_id" class=" form-control-label">Area</label>
+                                            <?= $html->select('area_id', $areas, array('class' => 'form-control')); ?>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Ação</label>
-                                            <?= $html->select('action_slug', $actions, array('class' => 'form-control', 'id' => 'action_slug')); ?>
+                                            <label for="action_slug" class=" form-control-label">Ação</label>
+                                            <?= $html->select('action_slug', $actions, array('class' => 'form-control')); ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" name="cGVybWlzc2lvbkxpc3Q=" class="btn btn-primary btn-sm">
+                                    <button type="submit" name="c2VhcmNoUGVybWlzc2lvbnM=" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Buscar
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">
@@ -67,7 +67,7 @@
                                 ?>
                                 <tr>
                                     <td><a href="<?= _root ?>/admin/permissions/permission/<?= $registros->getField('profile_id') ?>/<?= $registros->getField('area_id') ?>"><?= $registros->getField('profile_label').' : '.$registros->getField('area_label') ?></a></td>
-                                    <td><?= $registros->getField('slugs') ?></td>
+                                    <td><?= $registros->getField('actions') ?></td>
                                     <td><a class="btn btn-sm btn-danger" href="<?= _root ?>/admin/permissions/permissionDelete/<?= $registros->getField('profile_id') ?>/<?= $registros->getField('area_id') ?>" target="_blank">Delete</a></td>
                                 </tr>
                                 <?php

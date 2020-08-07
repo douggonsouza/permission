@@ -17,7 +17,7 @@ class users extends model implements modelInterface
     public function __construct()
     {
         if(!empty($this->getTable()) && !empty($this->getKey())){
-            parent::__construct($this->getTable(), $this->getKey());
+            parent::__construct($this->visibleCOlumns()['table'], $this->visibleCOlumns()['key']);
         }
     }
 

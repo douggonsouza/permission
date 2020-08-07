@@ -24,38 +24,23 @@ class permission extends baseControl
     {
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-        $search = array();
-        if(array_key_exists('cGVybWlzc2lvbkxpc3Q=',$_POST)){
-            $search = $this->search($_POST);
+        $this->param('html', new html());
+        $this->param('profiles', (new profiles())->dicionary());
+        $this->param('areas', (new areas())->dicionary());
+        $this->param('actions', (new actions())->dicionary());
+
+        $search = $this->where();
+        if(array_key_exists('c2VhcmNoUGVybWlzc2lvbnM=',$_POST)){
+            $search = $this->where($_POST);
         }
 
         $this->param('registros', null);
-        $permissions = (new permissions())->seek();
+        $permissions = (new permissions())->seek($search);
         if(!$permissions->isNew()){
             $this->param('registros', $permissions);
         }
 
-        // Levanta as opções de profiles
-        $profiles = (new profiles())->dicionary();
-        if(!empty($profiles)){
-            $this->param('profiles', $profiles);
-        }
-        
-        // Levanta as opções de areas
-        $areas    = (new areas())->dicionary();
-        if(!empty($profiles)){
-            $this->param('areas', $areas);
-        }
-        
-        // Levanta as opões de actions
-        $actions  = (new actions())->dicionary();
-        if(!empty($actions)){
-            $this->param('actions', $actions);
-        }
-
-        return $this->view(array(
-            'html' => new html()
-        ));
+        return $this->view();
     }
 
     /**
@@ -64,24 +49,24 @@ class permission extends baseControl
      * @param array $post
      * @return void
      */
-    protected function search(array $post)
+    protected function where(array $post = null)
     {
-        $search = array('active = 1');
+        $search = array('prm.active = 1');
 
         if(!isset($post) || empty($post)){
             return $search;
         }
 
         if(isset($_POST['profile_id']) && !empty($_POST['profile_id'])){
-            $search['profile_id'] = "profile_id = ".$_POST['profile_id'];
+            $search['profile_id'] = "prm.profile_id = ".$_POST['profile_id'];
         }
 
         if(isset($_POST['area_id']) && !empty($_POST['area_id'])){
-            $search['area_id'] = "area_id = ".$_POST['area_id'];
+            $search['area_id'] = "prm.area_id = ".$_POST['area_id'];
         }
 
         if(isset($_POST['action_slug']) && !empty($_POST['action_slug'])){
-            $search['action_slug'] = "action_slug = ".$_POST['action_slug'];
+            $search['action_slug'] = "prm.action_slug = ".$_POST['action_slug'];
         }
 
         return $search;

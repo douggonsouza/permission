@@ -22,13 +22,13 @@ class profile extends baseControl
     {
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
         
-        $search = array();
-        if(array_key_exists('cHJvZmlsZUxpc3Q=',$_POST)){
-            $search = $this->search($_POST);
+        $search = $this->where();
+        if(array_key_exists('c2VhcmNoUHJvZmlsZQ==',$_POST)){
+            $search = $this->where($_POST);
         }
 
         $this->param('registros', null);
-        $profile = (new profiles())->seek();
+        $profile = (new profiles())->seek($search);
         if(!$profile->isNew()){
             $this->param('registros', $profile);
         }
@@ -44,7 +44,7 @@ class profile extends baseControl
      * @param array $post
      * @return void
      */
-    protected function search(array $post)
+    protected function where(array $post = null)
     {
         $search = array('active = 1');
 

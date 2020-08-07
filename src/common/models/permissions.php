@@ -3,6 +3,7 @@
 namespace permission\common\models;
 
 use data\model\model;
+use data\resource\resource;
 use data\model\modelInterface;
 use permission\common\models\profiles;
 use permission\common\models\areas;
@@ -20,7 +21,7 @@ class permissions extends model implements modelInterface
     public function __construct()
     {
         if(!empty($this->getTable()) && !empty($this->getKey())){
-            parent::__construct($this->getTable(), $this->getKey());
+            parent::__construct($this->visibleCOlumns()['table'], $this->visibleCOlumns()['key']);
         }
     }
 
@@ -66,25 +67,54 @@ class permissions extends model implements modelInterface
     /**
      * Devolve sql para a realização da busca
      *
-     * @return void
+     * @param string $where
+     * @return string
      */
-    public function getSeek()
+    public function sqlSeek(array $where = null)
     {
-        return "SELECT
+        if(!isset($where) || empty($where)){
+            $where = array('prm.active = 1');
+        }
+
+        return sprintf("SELECT
             prf.profile_id,
             prf.label profile_label,
             prm.area_id,
             ars.label area_label,
-            GROUP_CONCAT(distinct prm.action_slug) slugs
+            GROUP_CONCAT(distinct prm.action_slug) actions
         FROM permissions AS prm
         JOIN profiles AS prf ON prf.profile_id = prm.profile_id AND prf.active = 1
         JOIN actions AS act ON act.action_slug = prm.action_slug AND act.active = 1
         JOIN areas AS ars ON ars.area_id = prm.area_id AND ars.active = 1
         WHERE
-            prm.active = 1
+            %1\$s
         GROUP BY
             prf.profile_id,
-            ars.area_id;";
+            ars.area_id;",
+            implode(' AND ', $where)
+        );
+    }
+
+    public function remove(int $profileId, int $areaId)
+    {
+        if(!isset($profileId) || empty($profileId)){
+            return false;
+        }
+
+        if(!isset($areaId) || empty($areaId)){
+            return false;
+        }
+
+        $sql = sprintf(
+            "DELETE FROM permissions
+            WHERE
+                profile_id = %1\$d
+                AND area_id = %2\$d;",
+            $profileId,
+            $areaId
+        );
+
+        return $this->execute($sql);
     }
 
     public function profile()
@@ -114,60 +144,48 @@ class permissions extends model implements modelInterface
         return $this->manyForOne(new actions(), 'action_slug');
     }
 
-    /**
-     * Valida a permissÃ£o para itens do Menu
-     *
-     * @param string $slug
-     * @param array $slugs
-     * @param array $views
-     * @return void
-     */
-    // public function menuPermission(string $slug, array $slugs, array $views)
-    // {
-    //     if(empty($slug) || empty($slugs) || empty($views)){
-    //         return false;
-    //     }
-            
-    //     $idSlug = array_search($slug, $slugs);
-    //     if(!isset($idSlug) || empty($idSlug))
-    //         return false;
-
-    //     return in_array($idSlug, $views);
-    // }
-
-    public function licenses(int $profileId = null)
+    public function licenses(int $profileId = null, int $areaId = null, string $actionSlug = null)
     {
-        if(!isset($profileId) || empty($profileId))
-            return false;
+        $where = array('prm.active = 1');
+
+        if(isset($profileId) && !empty($profileId)){
+            $where[] = 'prm.profile_id = '.$profileId;
+        }
+
+        if(isset($areaId) && !empty($areaId)){
+            $where[] = 'prm.area_id = '.$areaId;
+        }
+
+        if(isset($actionSlug) && !empty($actionSlug)){
+            $where[] = "prm.action_slug = '".$actionSlug."'";
+        }
 
         $records = (new resource())->execute(
             sprintf(
                 "SELECT
-                    prf.profile_id,
+                    prm.profile_id,
+                    prf.label,
                     prm.area_id,
                     ars.label,
-                    GROUP_CONCAT(distinct prm.action_slug) AS slugs
+                    GROUP_CONCAT(distinct prm.action_slug) AS actions
                 FROM permissions AS prm
                 JOIN profiles AS prf ON prf.profile_id = prm.profile_id AND prf.active = 1
                 JOIN actions AS act ON act.action_slug = prm.action_slug AND act.active = 1
                 JOIN areas AS ars ON ars.area_id = prm.area_id AND ars.active = 1
-                %1\Ss
+                WHERE
+                    %1\$s
                 GROUP BY
                     prf.profile_id,
                     ars.area_id;",
-                (!empty($profileId))? 'WHERE prm.active = 1 AND prm.profile_id = '.$profileId: null
+                implode(' AND ', $where)
             )
         );
+
         if(!isset($records) || $records == false){
-            return false;
+            return array();
         }
 
-        $data = [];
-        foreach($records as $item){
-            $data[$item['action']] = $item['slugs'];
-        }
-
-        return $data;
+        return $records;
     }
 
     public function isPermissed(string $profile, string $area, string $action)

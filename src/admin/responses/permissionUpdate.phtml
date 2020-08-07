@@ -10,12 +10,7 @@
                                         <label for="select" class=" form-control-label">Perfil</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <select name="profile_id" id="profile_id" class="form-control" required >
-                                            <option value="0">Please select</option>
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                        </select>
+                                        <?= $html->select('profile_id', $profiles, array('class' => 'form-control', 'required' => 'required'), $permission[0]['profile_id']); ?>
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -23,12 +18,7 @@
                                         <label for="select" class=" form-control-label">Area</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <select name="area_id" id="area_id" class="form-control" required >
-                                            <option value="0">Please select</option>
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                        </select>
+                                        <?= $html->select('area_id', $areas, array('class' => 'form-control', 'required' => 'required'), $permission[0]['area_id']); ?>
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -36,18 +26,10 @@
                                         <label class=" form-control-label">Ação</label>
                                     </div>
                                     <div class="col col-md-9">
-                                        <select name="action_slug[]" id="action_slug[]" class="form-control" required>
-                                            <option value="0">Please select</option>
-                                            <option value="1">Option #1</option>
-                                            <option value="2">Option #2</option>
-                                            <option value="3">Option #3</option>
-                                            <option value="4">Option #4</option>
-                                            <option value="5">Option #5</option>
-                                        </select>
+                                        <?= $html->multiSelect('action[]', $actions, array('class' => 'form-control', 'required' => 'required'), explode(',', $permission[0]['actions'])); ?>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <input type="hidden" id="permission_id" name="permission_id" value="<?= !empty($profile->getField('permission_id'))? $profile->getField('permission_id'): null; ?>" class="form-control">
                                     <button type="submit" name="cGVybWlzc2lvblVwZGF0ZQ==" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Enviar
                                     </button>

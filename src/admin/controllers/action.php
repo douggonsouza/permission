@@ -20,8 +20,8 @@ class action extends baseControl
     {
         self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-        $search = array();
-        if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
+        $search = $this->search();
+        if(array_key_exists('c2VhcmNoQWN0aW9ucw==',$_POST)){
             $search = $this->search($_POST);
         }
 
@@ -42,7 +42,7 @@ class action extends baseControl
      * @param array $post
      * @return void
      */
-    protected function search(array $post)
+    protected function where(array $post = null)
     {
         $search = array('active = 1');
 
