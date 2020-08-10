@@ -28,6 +28,9 @@ class ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0
         'permission\\admin\\controllers\\areaNew' => __DIR__ . '/../..' . '/src/admin/controllers/areaNew.php',
         'permission\\admin\\controllers\\areaUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/areaUpdate.php',
         'permission\\admin\\controllers\\baseControl' => __DIR__ . '/../..' . '/src/admin/controllers/baseControl.php',
+        'permission\\admin\\controllers\\menu' => __DIR__ . '/../..' . '/src/admin/controllers/menu.php',
+        'permission\\admin\\controllers\\menuNew' => __DIR__ . '/../..' . '/src/admin/controllers/menuNew.php',
+        'permission\\admin\\controllers\\menuUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/menuUpdate.php',
         'permission\\admin\\controllers\\permission' => __DIR__ . '/../..' . '/src/admin/controllers/permission.php',
         'permission\\admin\\controllers\\permissionNew' => __DIR__ . '/../..' . '/src/admin/controllers/permissionNew.php',
         'permission\\admin\\controllers\\permissionUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/permissionUpdate.php',
@@ -36,6 +39,7 @@ class ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0
         'permission\\admin\\controllers\\profileUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/profileUpdate.php',
         'permission\\common\\models\\actions' => __DIR__ . '/../..' . '/src/common/models/actions.php',
         'permission\\common\\models\\areas' => __DIR__ . '/../..' . '/src/common/models/areas.php',
+        'permission\\common\\models\\menus' => __DIR__ . '/../..' . '/src/common/models/menus.php',
         'permission\\common\\models\\permissions' => __DIR__ . '/../..' . '/src/common/models/permissions.php',
         'permission\\common\\models\\profiles' => __DIR__ . '/../..' . '/src/common/models/profiles.php',
     );

@@ -1,8 +1,9 @@
 -- Sequence Drop Table
 
-DROP TABLE IF EXISTS `users`;
+-- DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `permissions`;
 DROP TABLE IF EXISTS `actions`;
+DROP TABLE IF EXISTS `menus`;
 DROP TABLE IF EXISTS `areas`;
 DROP TABLE IF EXISTS `profiles`;
 
@@ -37,6 +38,22 @@ CREATE TABLE `areas` (
   PRIMARY KEY (`area_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `menus` (
+  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `profile_id` int(11) NOT NULL,
+  `area_id` int(11) NOT NULL,
+  `label` varchar(25) NOT NULL,
+  `url` varchar(160) NOT NULL,
+  `icon` varchar(25) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT '1',
+  `created` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`menu_id`),
+  KEY `fk_menus_1_idx` (`profile_id`),
+  KEY `fk_menus_2_idx` (`area_id`),
+  CONSTRAINT `fk_menus_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`profile_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_menus_2` FOREIGN KEY (`area_id`) REFERENCES `areas` (`area_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `permissions` (
   `permission_id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) NOT NULL,
@@ -46,23 +63,6 @@ CREATE TABLE `permissions` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`permission_id`),
   UNIQUE KEY `index2` (`profile_id`,`area_id`,`action_slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) CHARACTER SET utf8 NOT NULL,
-  `profile_id` int(11) NOT NULL,
-  `email` varchar(160) CHARACTER SET utf8 NOT NULL,
-  `birth` date DEFAULT NULL,
-  `ddd` varchar(3) DEFAULT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `password` varchar(90) NOT NULL,
-  `token` varchar(160) NOT NULL,
-  `active` tinyint(1) DEFAULT '1',
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
-  KEY `fk_users_1_idx` (`profile_id`),
-  CONSTRAINT `fk_users_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`profile_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Insere Permissões

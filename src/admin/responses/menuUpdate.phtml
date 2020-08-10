@@ -1,0 +1,71 @@
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Menu</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="select" class=" form-control-label">Perfil</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <?= $html->select('profile_id', $profiles, array('class' => 'form-control', 'required' => 'required'), $menu->getField('profile_id')); ?>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="select" class=" form-control-label">Area</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <?= $html->select('area_id', $areas, array('class' => 'form-control', 'required' => 'required'), $menu->getField('area_id')); ?>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Etiqueta</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="label" name="label" placeholder="" value="<?= $menu->getField('label'); ?>" class="form-control" required >
+                                        <small class="form-text text-muted">Etiqueta do menu.</small>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="url" class=" form-control-label"><span style="color:red;">*</span>Url</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="url" name="url" placeholder="" value="<?= $menu->getField('url'); ?>" class="form-control" required >
+                                        <small class="form-text text-muted">Url do menu.</small>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="icon" class=" form-control-label">Icone</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="icon" name="icon" placeholder="" value="<?= $menu->getField('icon'); ?>" class="form-control" required >
+                                        <small class="form-text text-muted">Icone do menu.</small>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                <input type="hidden" id="menu_id" name="menu_id" value="<?= $menu->getField('menu_id'); ?>" class="form-control">
+                                    <button type="submit" name="dXBkYXRlTWVudXM=" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Enviar
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Limpar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright">
+                        <p>Copyright © 2020 DOUGGS. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>

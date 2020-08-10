@@ -1,0 +1,105 @@
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Ações</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group">
+                                <div class="col-2">
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/menuNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Lista</strong><small> Menus</small>
+                        </div>
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="profile_id" class=" form-control-label">Perfil</label>
+                                            <?= $html->select('profile_id', $profiles, array('class' => 'form-control')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="area_id" class=" form-control-label">Area</label>
+                                            <?= $html->select('area_id', $areas, array('class' => 'form-control')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="label" class=" form-control-label">Etiqueta</label>
+                                            <input type="text" id="label" name="label" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" name="c2VhcmNoTWVudXM=" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Buscar
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Limpar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- DATA TABLE-->
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Perfil</th>
+                                    <th>Area</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if(isset($registros)){
+                                        while(!$registros->isEof()){
+                                ?>
+                                <tr>
+                                    <td><a href="<?= _root ?>/admin/permissions/menu/<?= $registros->getField('menu_id') ?>"><?= $registros->getField('menu_id') ?></a></td>
+                                    <td><?= $registros->getField('profile_label') ?></td>
+                                    <td><?= $registros->getField('area_label') ?></td>
+                                    <td><a class="btn btn-sm btn-danger" href="<?= _root ?>/admin/permissions/menuDelete/<?= $registros->getField('menu_id') ?>" target="_blank">Delete</a></td>
+                                </tr>
+                                <?php
+                                            $registros->next();
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END DATA TABLE-->
+
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Ações</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row form-group">
+                                <div class="col-2">
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/menuNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                            <p>Copyright© 2020 DOUGGS. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>

@@ -13,6 +13,9 @@ return array(
     'permission\\admin\\controllers\\areaNew' => $baseDir . '/src/admin/controllers/areaNew.php',
     'permission\\admin\\controllers\\areaUpdate' => $baseDir . '/src/admin/controllers/areaUpdate.php',
     'permission\\admin\\controllers\\baseControl' => $baseDir . '/src/admin/controllers/baseControl.php',
+    'permission\\admin\\controllers\\menu' => $baseDir . '/src/admin/controllers/menu.php',
+    'permission\\admin\\controllers\\menuNew' => $baseDir . '/src/admin/controllers/menuNew.php',
+    'permission\\admin\\controllers\\menuUpdate' => $baseDir . '/src/admin/controllers/menuUpdate.php',
     'permission\\admin\\controllers\\permission' => $baseDir . '/src/admin/controllers/permission.php',
     'permission\\admin\\controllers\\permissionNew' => $baseDir . '/src/admin/controllers/permissionNew.php',
     'permission\\admin\\controllers\\permissionUpdate' => $baseDir . '/src/admin/controllers/permissionUpdate.php',
@@ -21,6 +24,7 @@ return array(
     'permission\\admin\\controllers\\profileUpdate' => $baseDir . '/src/admin/controllers/profileUpdate.php',
     'permission\\common\\models\\actions' => $baseDir . '/src/common/models/actions.php',
     'permission\\common\\models\\areas' => $baseDir . '/src/common/models/areas.php',
+    'permission\\common\\models\\menus' => $baseDir . '/src/common/models/menus.php',
     'permission\\common\\models\\permissions' => $baseDir . '/src/common/models/permissions.php',
     'permission\\common\\models\\profiles' => $baseDir . '/src/common/models/profiles.php',
 );
