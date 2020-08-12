@@ -6,6 +6,7 @@ use driver\helper\html;
 use alerts\alerts\alerts;
 use permission\admin\controllers\baseControl;
 use permission\common\models\profiles;
+use permission\common\models\sections;
 use permission\common\models\areas;
 use permission\common\models\menus;
 
@@ -25,6 +26,7 @@ class menu extends baseControl
 
         $this->param('html', new html());
         $this->param('profiles', (new profiles())->dicionary());
+        $this->param('sections', (new sections())->dicionary());
         $this->param('areas', (new areas())->dicionary());
 
         $search = $this->where();
@@ -69,7 +71,6 @@ class menu extends baseControl
 
         return $search;
     }
-
 
     /**
      * Para ser disparado antes

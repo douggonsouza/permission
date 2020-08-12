@@ -7,19 +7,10 @@
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Slug:</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="text" id="action_slug" name="action_slug" placeholder="" class="form-control" required >
-                                        <small class="form-text text-muted">Nome identificador da ação.</small>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
                                         <label for="text-input" class=" form-control-label"><span style="color:red;">*</span>Label:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="label" name="label" value="<?= $action->getField('label'); ?>" placeholder="" class="form-control" required >
+                                        <input type="text" id="label" name="label" value="<?= $section->getField('label') ?>" placeholder="" class="form-control" required >
                                         <small class="form-text text-muted">Etiqueta da ação.</small>
                                     </div>
                                 </div>
@@ -28,13 +19,13 @@
                                         <label for="text-input" class=" form-control-label">Descrição:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="description" name="description" value="<?= $action->getField('description'); ?>" placeholder="" class="form-control">
+                                        <input type="text" id="description" name="description" value="<?= $section->getField('description') ?>" placeholder="" class="form-control">
                                         <small class="form-text text-muted">Descrição da ação.</small>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <input type="hidden" id="action_id" name="action_id" value="<?= $action->getField('action_id'); ?>" class="form-control">
-                                    <button type="submit" name="YWN0aW9uVXBkYXRl" class="btn btn-primary btn-sm">
+                                    <input type="hidden" id="section_id" name="section_id" value="<?= $section->getField('section_id'); ?>" class="form-control">
+                                    <button type="submit" name="dWlwZGF0ZVNlY3Rpb25z" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Enviar
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">

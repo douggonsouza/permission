@@ -6,8 +6,18 @@ DROP TABLE IF EXISTS `actions`;
 DROP TABLE IF EXISTS `menus`;
 DROP TABLE IF EXISTS `areas`;
 DROP TABLE IF EXISTS `profiles`;
+DROP TABLE IF EXISTS `sections`;
 
 -- Sequande Create Table
+CREATE TABLE `sections` (
+  `section_id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(45) NOT NULL,
+  `description` varchar(160) NOT NULL,
+  `active` tinyint(1) DEFAULT '1',
+  `create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`section_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `profiles` (
   `profile_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(90) NOT NULL,
@@ -41,7 +51,7 @@ CREATE TABLE `areas` (
 CREATE TABLE `menus` (
   `menu_id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) NOT NULL,
-  `area_id` int(11) NOT NULL,
+  `section_id` int(11) NOT NULL,
   `label` varchar(25) NOT NULL,
   `url` varchar(160) NOT NULL,
   `icon` varchar(25) DEFAULT NULL,
@@ -49,9 +59,9 @@ CREATE TABLE `menus` (
   `created` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`menu_id`),
   KEY `fk_menus_1_idx` (`profile_id`),
-  KEY `fk_menus_2_idx` (`area_id`),
+  KEY `fk_menus_2_idx` (`section_id`),
   CONSTRAINT `fk_menus_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`profile_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_menus_2` FOREIGN KEY (`area_id`) REFERENCES `areas` (`area_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_menus_2` FOREIGN KEY (`section_id`) REFERENCES `sections` (`section_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `permissions` (

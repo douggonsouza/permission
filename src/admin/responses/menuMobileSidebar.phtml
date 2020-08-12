@@ -1,0 +1,33 @@
+            <?php
+                if(isset($menus)){
+            ?>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                    <?php
+                        $sectionId = null;
+                        while(!$menus->isEof()){
+
+                            $ul = null;
+                            if($sectionId != $menus->getField('section_id')){
+                                echo '<li class="has-sub">';
+                                echo '<a class="js-arrow" href="#"><i class="fas '.$menus->getField('section_icon').'"></i>'.$menus->getField('section_label').'</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">';
+                                $ul = '</ul>
+                                    </li>';
+                            }
+
+                            echo '<li><a href="'._root.$menus->getField('url').'">'.$menus->getField('label').'</a></li>';
+                            echo $ul;
+
+                            $sectionId = $menus->getField('section_id');
+                            $menus->next();
+                        }
+
+                    ?>
+                    </ul>
+                </div>
+            </nav>
+            <?php
+                }
+            ?>

@@ -1,0 +1,50 @@
+<!-- MENU SIDEBAR-->
+<aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="<?= _assets ?>/CoolAdmin/images/icon/logo.png" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <?php
+                    if(isset($menus)){
+                ?>
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                    <?php
+                        $sectionId = null;
+                        while(!$menus->isEof()){
+                    ?>
+                        <li class="active has-sub">
+                            <?php
+                                if($sectionId != $menus->getField('section_id')){
+                            ?>
+                                <a class="js-arrow" href="#"><i class="fas <?= $menus->getField('section_icon'); ?>"></i><?= $menus->getField('section_label'); ?></a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <?php
+                                }
+                            ?>
+                                    <li>
+                                        <a href="<?= _root.$menus->getField('url'); ?>"><?= $menus->getField('label'); ?></a>
+                                    </li>
+                            <?php
+                                if($sectionId != $menus->getField('section_id')){
+                            ?>
+                                </ul>
+                            <?php
+                                }
+                            ?>
+                        </li>
+                    <?php
+                            $sectionId = $menus->getField('section_id');
+                            $menus->next();
+                        }
+                    ?>
+                    </ul>
+                </nav>
+                <?php
+                    }
+                ?>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->

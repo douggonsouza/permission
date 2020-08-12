@@ -8,6 +8,7 @@ use alerts\alerts\alerts;
 use permission\admin\controllers\baseControl;
 use permission\common\models\permissions;
 use permission\common\models\profiles;
+use permission\common\models\sections;
 use permission\common\models\areas;
 use permission\common\models\menus;
 
@@ -27,6 +28,7 @@ class menuNew extends baseControl
 
         $this->param('html', new html());
         $this->param('profiles', (new profiles())->dicionary());
+        $this->param('sections', (new sections())->dicionary());
         $this->param('areas', (new areas())->dicionary());
 
         if(array_key_exists('bmV3TWVudXM=',$_POST)){

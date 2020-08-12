@@ -1,12 +1,12 @@
                 <div>
-                    <div class="card">
+                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">Ações</strong>
                         </div>
                         <div class="card-body">
                             <div class="row form-group">
                                 <div class="col-2">
-                                    <a target="_blank" href="<?= _root ?>/admin/permissions/menuNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/sectionNew" class="btn btn-sm btn-outline-primary">Novo</a>
                                 </div>
                             </div>
                         </div>
@@ -14,38 +14,26 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <strong>Lista</strong><small> Menus</small>
+                            <strong>Lista</strong><small> Ações</small>
                         </div>
                         <div class="card-body card-block">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="row form-group">
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="profile_id" class=" form-control-label">Perfil</label>
-                                            <?= $html->select('profile_id', $profiles, array('class' => 'form-control')); ?>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="section_id" class=" form-control-label">Sessão</label>
-                                            <?= $html->select('section_id', $sections, array('class' => 'form-control')); ?>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="area_id" class=" form-control-label">Area</label>
-                                            <?= $html->select('area_id', $areas, array('class' => 'form-control')); ?>
-                                        </div>
-                                    </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="label" class=" form-control-label">Etiqueta</label>
                                             <input type="text" id="label" name="label" placeholder="" class="form-control">
                                         </div>
                                     </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="description" class=" form-control-label">Descrição</label>
+                                            <input type="text" id="description" name="description" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" name="c2VhcmNoTWVudXM=" class="btn btn-primary btn-sm">
+                                    <button type="submit" name="c2VhcmNoU2VjdGlvbnM=" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Buscar
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">
@@ -61,9 +49,9 @@
                         <table class="table table-borderless table-data3">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Perfil</th>
-                                    <th>Area</th>
+                                    <th>ID</th>
+                                    <th>Etiqueta</th>
+                                    <th>Descrição</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
@@ -73,10 +61,10 @@
                                         while(!$registros->isEof()){
                                 ?>
                                 <tr>
-                                    <td><a href="<?= _root ?>/admin/permissions/menu/<?= $registros->getField('menu_id') ?>"><?= $registros->getField('menu_id') ?></a></td>
-                                    <td><?= $registros->getField('profile_label') ?></td>
-                                    <td><?= $registros->getField('area_label') ?></td>
-                                    <td><a class="btn btn-sm btn-danger" href="<?= _root ?>/admin/permissions/menuDelete/<?= $registros->getField('menu_id') ?>" target="_blank">Delete</a></td>
+                                    <td><a href="<?= _root ?>/admin/permissions/section/<?= $registros->getField('section_id') ?>"><?= $registros->getField('section_id') ?></a></td>
+                                    <td><?= $registros->getField('label') ?></td>
+                                    <td><?= $registros->getField('description') ?></td>
+                                    <td><a class="btn btn-sm btn-danger" href="<?= _root ?>/admin/permissions/sectionDelete/<?= $registros->getField('section_id') ?>" target="_blank">Delete</a></td>
                                 </tr>
                                 <?php
                                             $registros->next();
@@ -95,7 +83,7 @@
                         <div class="card-body">
                             <div class="row form-group">
                                 <div class="col-2">
-                                    <a target="_blank" href="<?= _root ?>/admin/permissions/menuNew" class="btn btn-sm btn-outline-primary">Novo</a>
+                                    <a target="_blank" href="<?= _root ?>/admin/permissions/sectionNew" class="btn btn-sm btn-outline-primary">Novo</a>
                                 </div>
                             </div>
                         </div>

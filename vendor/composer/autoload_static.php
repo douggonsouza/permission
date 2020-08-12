@@ -29,7 +29,11 @@ class ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0
         'permission\\admin\\controllers\\areaUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/areaUpdate.php',
         'permission\\admin\\controllers\\baseControl' => __DIR__ . '/../..' . '/src/admin/controllers/baseControl.php',
         'permission\\admin\\controllers\\menu' => __DIR__ . '/../..' . '/src/admin/controllers/menu.php',
+        'permission\\admin\\controllers\\menuHeader' => __DIR__ . '/../..' . '/src/admin/controllers/menuHeader.php',
+        'permission\\admin\\controllers\\menuMobileHeader' => __DIR__ . '/../..' . '/src/admin/controllers/menuMobileHeader.php',
+        'permission\\admin\\controllers\\menuMobileSidebar' => __DIR__ . '/../..' . '/src/admin/controllers/menuMobileSidebar.php',
         'permission\\admin\\controllers\\menuNew' => __DIR__ . '/../..' . '/src/admin/controllers/menuNew.php',
+        'permission\\admin\\controllers\\menuSidebar' => __DIR__ . '/../..' . '/src/admin/controllers/menuSidebar.php',
         'permission\\admin\\controllers\\menuUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/menuUpdate.php',
         'permission\\admin\\controllers\\permission' => __DIR__ . '/../..' . '/src/admin/controllers/permission.php',
         'permission\\admin\\controllers\\permissionNew' => __DIR__ . '/../..' . '/src/admin/controllers/permissionNew.php',
@@ -37,11 +41,15 @@ class ComposerStaticInitc9c8236389fa22650b9317b558dbc5b0
         'permission\\admin\\controllers\\profile' => __DIR__ . '/../..' . '/src/admin/controllers/profile.php',
         'permission\\admin\\controllers\\profileNew' => __DIR__ . '/../..' . '/src/admin/controllers/profileNew.php',
         'permission\\admin\\controllers\\profileUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/profileUpdate.php',
+        'permission\\admin\\controllers\\section' => __DIR__ . '/../..' . '/src/admin/controllers/section.php',
+        'permission\\admin\\controllers\\sectionNew' => __DIR__ . '/../..' . '/src/admin/controllers/sectionNew.php',
+        'permission\\admin\\controllers\\sectionUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/sectionUpdate.php',
         'permission\\common\\models\\actions' => __DIR__ . '/../..' . '/src/common/models/actions.php',
         'permission\\common\\models\\areas' => __DIR__ . '/../..' . '/src/common/models/areas.php',
         'permission\\common\\models\\menus' => __DIR__ . '/../..' . '/src/common/models/menus.php',
         'permission\\common\\models\\permissions' => __DIR__ . '/../..' . '/src/common/models/permissions.php',
         'permission\\common\\models\\profiles' => __DIR__ . '/../..' . '/src/common/models/profiles.php',
+        'permission\\common\\models\\sections' => __DIR__ . '/../..' . '/src/common/models/sections.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

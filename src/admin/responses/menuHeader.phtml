@@ -1,0 +1,29 @@
+                    <?php
+                        if(isset($menus)){
+                    ?>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <?php
+                                $sectionId = null;
+                                while(!$menus->isEof()){
+                                    $ul = null;
+                                    if($sectionId != $menus->getField('section_id')){
+                                        echo '<li class="has-sub">';
+                                        echo '<a href="#"><i class="fas '.$menus->getField('section_icon').'"></i>'.$menus->getField('section_label').'<span class="bot-line"></span></a>
+                                        <ul class="header3-sub-list list-unstyled">';
+                                        $ul = '</ul>
+                                            </li>';
+                                    }
+
+                                    echo '<li><a href="'._root.$menus->getField('url').'">'.$menus->getField('label').'</a></li>';
+                                    echo $ul;
+
+                                    $sectionId = $menus->getField('section_id');
+                                    $menus->next();
+                                }
+                            ?>
+                        </ul>
+                    </div>
+                    <?php
+                        }
+                    ?>

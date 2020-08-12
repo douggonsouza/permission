@@ -6,7 +6,7 @@ use data\model\model;
 use data\resource\resource;
 use data\model\modelInterface;
 use permission\common\models\profiles;
-use permission\common\models\areas;
+use permission\common\models\sections;
 
 class menus extends model implements modelInterface
 {
@@ -47,6 +47,12 @@ class menus extends model implements modelInterface
                     'type'  => 'integer',
                     'limit' => 11
                 ),
+                'section_id' => array(
+                    'label' => 'Sessão',
+                    'pk'    => false,
+                    'type'  => 'integer',
+                    'limit' => 11
+                ),
                 'area_id' => array(
                     'label' => 'Area',
                     'pk'    => false,
@@ -64,12 +70,6 @@ class menus extends model implements modelInterface
                     'pk'    => false,
                     'type'  => 'varchar',
                     'limit' => 160
-                ),
-                'icon' => array(
-                    'label' => 'Icone',
-                    'pk'    => false,
-                    'type'  => 'varchar',
-                    'limit' => 25
                 ),
             ),
         );
@@ -109,13 +109,54 @@ class menus extends model implements modelInterface
         return $this->manyForOne(new profiles(), 'profile_id');
     }
 
-    public function area()
+    public function section()
     {
-        if(empty($this->getField('area_id'))){
+        if(empty($this->getField('section_id'))){
             return null;
         }
 
-        return $this->manyForOne(new areas(), 'area_id');
+        return $this->manyForOne(new sections(), 'section_id');
+    }
+
+    /**
+     * Menus conforme o perfil
+     *
+     * @param integer $profileID
+     * @return void
+     */
+    public function menuPermissions(int $profileID)
+    {
+        if(!isset($profileID) || empty($profileID)){
+            return false;
+        }
+
+        $sql = sprintf("SELECT
+                mns.profile_id,
+                mns.section_id,
+                sct.label AS section_label,
+                sct.icon AS section_icon,
+                mns.label,
+                mns.url
+            FROM menus as mns
+            JOIN permissions AS prm ON prm.profile_id = mns.profile_id AND prm.area_id = mns.area_id AND prm.action_slug = 'menu' AND prm.active = 1
+            JOIN profiles AS prf ON prf.profile_id = mns.profile_id AND prf.active = 1
+            JOIN sections AS sct ON sct.section_id = mns.section_id AND sct.active = 1
+            JOIN areas AS ars ON ars.area_id = mns.area_id AND ars.active = 1
+            WHERE
+                mns.active = 1
+                %1\$s
+            ORDER BY
+                mns.profile_id,
+                sct.label,
+                mns.label;",
+            $profileId
+        );
+
+        if(!$this->query($sql)){
+            return false;
+        }
+
+        return $this;
     }
 
     /**

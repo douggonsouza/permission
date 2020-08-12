@@ -15,7 +15,15 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="select" class=" form-control-label">Area</label>
+                                        <label for="section_id" class=" form-control-label">Sessão</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <?= $html->select('section_id', $sections, array('class' => 'form-control', 'required' => 'required')); ?>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="area_id" class=" form-control-label">Area</label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <?= $html->select('area_id', $areas, array('class' => 'form-control', 'required' => 'required')); ?>
@@ -37,15 +45,6 @@
                                     <div class="col-12 col-md-9">
                                         <input type="text" id="url" name="url" placeholder="" value="" class="form-control" required >
                                         <small class="form-text text-muted">Url do menu.</small>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="icon" class=" form-control-label">Icone</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="text" id="icon" name="icon" placeholder="" value="" class="form-control" required >
-                                        <small class="form-text text-muted">Icone do menu.</small>
                                     </div>
                                 </div>
                                 <div class="card-footer">
