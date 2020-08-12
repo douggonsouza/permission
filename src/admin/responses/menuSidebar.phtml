@@ -14,31 +14,25 @@
                     <?php
                         $sectionId = null;
                         while(!$menus->isEof()){
-                    ?>
-                        <li class="active has-sub">
-                            <?php
-                                if($sectionId != $menus->getField('section_id')){
-                            ?>
-                                <a class="js-arrow" href="#"><i class="fas <?= $menus->getField('section_icon'); ?>"></i><?= $menus->getField('section_label'); ?></a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <?php
+                            if($sectionId != $menus->getField('section_id')){
+                                if(isset($sectionId)){
+                                    $mn .= '</ul>
+                                        </li>';
+                                    echo $mn;
                                 }
-                            ?>
-                                    <li>
-                                        <a href="<?= _root.$menus->getField('url'); ?>"><?= $menus->getField('label'); ?></a>
-                                    </li>
-                            <?php
-                                if($sectionId != $menus->getField('section_id')){
-                            ?>
-                                </ul>
-                            <?php
-                                }
-                            ?>
-                        </li>
-                    <?php
+                                $mn = '';
+                                $mn .= '<li class="active has-sub">';
+                                $mn .= '<a class="js-arrow" href="#"><i class="fas '.$menus->getField('section_icon').'"></i>'.$menus->getField('section_label').'</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">';
+                            }
+                            $mn .= "\n".'<li><a href="'._root.$menus->getField('url').'">'.$menus->getField('label').'</a></li>';
+
                             $sectionId = $menus->getField('section_id');
                             $menus->next();
                         }
+                        $mn .= "\n".'</ul>
+                            </li>'."\n";
+                        echo $mn;
                     ?>
                     </ul>
                 </nav>

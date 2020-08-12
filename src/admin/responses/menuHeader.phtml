@@ -6,21 +6,25 @@
                             <?php
                                 $sectionId = null;
                                 while(!$menus->isEof()){
-                                    $ul = null;
                                     if($sectionId != $menus->getField('section_id')){
-                                        echo '<li class="has-sub">';
-                                        echo '<a href="#"><i class="fas '.$menus->getField('section_icon').'"></i>'.$menus->getField('section_label').'<span class="bot-line"></span></a>
-                                        <ul class="header3-sub-list list-unstyled">';
-                                        $ul = '</ul>
-                                            </li>';
+                                        if(isset($sectionId)){
+                                            $mn .= '</ul>
+                                                </li>';
+                                            echo $mn;
+                                        }
+                                        $mn = '';
+                                        $mn .= '<li class="has-sub">';
+                                        $mn .= '<a href="#"><i class="fas '.$menus->getField('section_icon').'"></i>'.$menus->getField('section_label').'<span class="bot-line"></span></a>
+                                            <ul class="header3-sub-list list-unstyled">';
                                     }
-
-                                    echo '<li><a href="'._root.$menus->getField('url').'">'.$menus->getField('label').'</a></li>';
-                                    echo $ul;
+                                    $mn .= "\n".'<li><a href="'._root.$menus->getField('url').'">'.$menus->getField('label').'</a></li>';
 
                                     $sectionId = $menus->getField('section_id');
                                     $menus->next();
                                 }
+                                $mn .= "\n".'</ul>
+                                    </li>'."\n";
+                                echo $mn;
                             ?>
                         </ul>
                     </div>

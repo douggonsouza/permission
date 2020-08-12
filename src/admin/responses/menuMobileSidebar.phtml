@@ -7,23 +7,25 @@
                     <?php
                         $sectionId = null;
                         while(!$menus->isEof()){
-
-                            $ul = null;
                             if($sectionId != $menus->getField('section_id')){
-                                echo '<li class="has-sub">';
-                                echo '<a class="js-arrow" href="#"><i class="fas '.$menus->getField('section_icon').'"></i>'.$menus->getField('section_label').'</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">';
-                                $ul = '</ul>
-                                    </li>';
+                                if(isset($sectionId)){
+                                    $mn .= '</ul>
+                                        </li>';
+                                    echo $mn;
+                                }
+                                $mn = '';
+                                $mn .= '<li class="has-sub">';
+                                $mn .= '<a class="js-arrow" href="#"><i class="fas '.$menus->getField('section_icon').'"></i>'.$menus->getField('section_label').'</a>
+                                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">';
                             }
-
-                            echo '<li><a href="'._root.$menus->getField('url').'">'.$menus->getField('label').'</a></li>';
-                            echo $ul;
+                            $mn .= "\n".'<li><a href="'._root.$menus->getField('url').'">'.$menus->getField('label').'</a></li>';
 
                             $sectionId = $menus->getField('section_id');
                             $menus->next();
                         }
-
+                        $mn .= "\n".'</ul>
+                            </li>'."\n";
+                        echo $mn;
                     ?>
                     </ul>
                 </div>
