@@ -13,10 +13,12 @@ CREATE TABLE `sections` (
   `section_id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(45) NOT NULL,
   `description` varchar(160) NOT NULL,
+  `icon` varchar(25) DEFAULT NULL,
   `active` tinyint(1) DEFAULT '1',
   `create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`section_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE `profiles` (
   `profile_id` int NOT NULL AUTO_INCREMENT,
@@ -52,9 +54,9 @@ CREATE TABLE `menus` (
   `menu_id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
+  `area_id` int(11) DEFAULT NULL,
   `label` varchar(25) NOT NULL,
   `url` varchar(160) NOT NULL,
-  `icon` varchar(25) DEFAULT NULL,
   `active` tinyint(1) DEFAULT '1',
   `created` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`menu_id`),
@@ -63,6 +65,7 @@ CREATE TABLE `menus` (
   CONSTRAINT `fk_menus_1` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`profile_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_menus_2` FOREIGN KEY (`section_id`) REFERENCES `sections` (`section_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE `permissions` (
   `permission_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -94,6 +97,7 @@ INSERT INTO actions VALUES (null, 1, 'update', 'Mudar', 1, now());
 INSERT INTO actions VALUES (null, 1, 'insert', 'Criar', 1, now());
 INSERT INTO actions VALUES (null, 1, 'select', 'Listar', 1, now());
 INSERT INTO actions VALUES (null, 1, 'upload', 'Enviar', 1, now());
+INSERT INTO actions VALUES (null, 1, 'menu', 'Menu', 1, now());
 
 -- Insere ações
 INSERT INTO permissions VALUES (null, 1, 1, 'view', 1, now());
@@ -103,3 +107,4 @@ INSERT INTO permissions VALUES (null, 1, 1, 'update', 1, now());
 INSERT INTO permissions VALUES (null, 1, 1, 'insert', 1, now());
 INSERT INTO permissions VALUES (null, 1, 1, 'select', 1, now());
 INSERT INTO permissions VALUES (null, 1, 1, 'upload', 1, now());
+INSERT INTO permissions VALUES (null, 1, 1, 'menu', 1, now());
